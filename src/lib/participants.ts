@@ -1,3 +1,5 @@
+import Papa from 'papaparse';
+
 export type Participant = {
   id: string;
   name: string;
@@ -11,24 +13,56 @@ export type Participant = {
   arcadeGames: number | null;
 };
 
-const participantsData: Omit<Participant, 'id'>[] = [
-    { name: 'KUSHWANT KUMAR REDDY', email: 'kushwant.work@gmail.com', profileUrl: '#', profileUrlStatus: 'All Good', accessCodeRedemption: 'Redeemed', redemptionStatus: true, allCompleted: true, skillBadges: 15, arcadeGames: 1 },
-    { name: 'GONDI MOSES', email: 'gondi.moses@example.com', profileUrl: '#', profileUrlStatus: 'All Good', accessCodeRedemption: 'Redeemed', redemptionStatus: true, allCompleted: false, skillBadges: 16, arcadeGames: null },
-    { name: 'JAYADEEP TADAKAMALLA', email: 'jayadeep.t@example.com', profileUrl: '#', profileUrlStatus: 'All Good', accessCodeRedemption: 'Redeemed', redemptionStatus: true, allCompleted: false, skillBadges: 14, arcadeGames: null },
-    { name: 'GADDAM HARSHITHA YADAV', email: 'gaddam.harshitha@example.com', profileUrl: '#', profileUrlStatus: 'All Good', accessCodeRedemption: 'Redeemed', redemptionStatus: true, allCompleted: false, skillBadges: 14, arcadeGames: null },
-    { name: 'VIVEK KRISHNA', email: 'vivek.krishna@example.com', profileUrl: '#', profileUrlStatus: 'Incomplete', accessCodeRedemption: 'Pending', redemptionStatus: true, allCompleted: false, skillBadges: 13, arcadeGames: null },
-    { name: 'SUMAIAH', email: 'sumaiah@example.com', profileUrl: '#', profileUrlStatus: 'All Good', accessCodeRedemption: 'Redeemed', redemptionStatus: true, allCompleted: false, skillBadges: 11, arcadeGames: null },
-    { name: 'Alex Rivera', email: 'alex.rivera@example.com', profileUrl: '#', profileUrlStatus: 'All Good', accessCodeRedemption: 'Redeemed', redemptionStatus: true, allCompleted: true, skillBadges: 12, arcadeGames: 2 },
-    { name: 'Ben Carter', email: 'ben.carter@example.com', profileUrl: '#', profileUrlStatus: 'Incomplete', accessCodeRedemption: 'Pending', redemptionStatus: false, allCompleted: false, skillBadges: 9, arcadeGames: 0 },
-    { name: 'Chloe Davis', email: 'chloe.davis@example.com', profileUrl: '#', profileUrlStatus: 'All Good', accessCodeRedemption: 'Redeemed', redemptionStatus: true, allCompleted: true, skillBadges: 18, arcadeGames: 3 },
-];
+const SPREADSHEET_URL = 'https://docs.google.com/spreadsheets/d/1UL2OK8oolWeehcs799ofOwxWciSJ5D0xyGuUxAhE1wI/gviz/tq?tqx=out:csv&gid=490025218';
 
 export async function getParticipants(): Promise<Participant[]> {
-  // Add a unique ID to each participant
-  return participantsData.map((p, index) => ({
-    ...p,
-    id: `${p.name.replace(/\s+/g, '-').toLowerCase()}-${index}`,
-  }));
+  try {
+    const response = await fetch(SPREADSHEET_URL);
+    const csvText = await response.text();
+    
+    return new Promise((resolve, reject) => {
+      Papa.parse(csvText, {
+        header: true,
+        dynamicTyping: true,
+        skipEmptyLines: true,
+        complete: (results) => {
+          const participants = results.data.map((row: any, index: number) => {
+            const name = row['Student Name'];
+            
+            // Skip header or invalid rows
+            if (!name || name === 'Student Name') {
+              return null;
+            }
+
+            return {
+              id: `${name.replace(/\s+/g, '-').toLowerCase()}-${index}`,
+              name: name,
+              email: row['Student Email'],
+              profileUrl: row['Google Cloud Skills Boost Profile URL'],
+              profileUrlStatus: row['Profile URL Status'] === 'All Good' ? 'All Good' : 'Incomplete',
+              accessCodeRedemption: row['Access Code Redemption Status'] === 'Yes' ? 'Redeemed' : 'Pending',
+              redemptionStatus: row['Redemption Status'] === 'Yes',
+              allCompleted: row['# of Skill Badges Completed'] >= 10,
+              skillBadges: Number(row['# of Skill Badges Completed'] || 0),
+              arcadeGames: row['# of Arcade Games Completed'] ? Number(row['# of Arcade Games Completed']) : null,
+            };
+          }).filter(p => p !== null) as Participant[];
+          
+          // Sort by skill badges descending
+          participants.sort((a, b) => b.skillBadges - a.skillBadges);
+
+          resolve(participants);
+        },
+        error: (error: Error) => {
+          console.error("Error parsing CSV:", error);
+          reject(error);
+        }
+      });
+    });
+  } catch (error) {
+    console.error("Failed to fetch spreadsheet:", error);
+    return [];
+  }
 }
 
 export async function getParticipantById(id: string): Promise<Participant | undefined> {
