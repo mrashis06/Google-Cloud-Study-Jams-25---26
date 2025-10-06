@@ -119,20 +119,18 @@ export default function ParticipantProfile({
     <div className="min-h-screen bg-background text-foreground">
       <header className="bg-muted/40 p-4">
         <div className="container mx-auto flex items-center justify-between">
-          <div className="flex-1"></div>
-          <div className="flex flex-1 items-center justify-center text-center">
+          <div className="flex items-center gap-2">
             <Image
               src="/assets/google-cloud.png"
               alt="Google Cloud Logo"
               width={24}
               height={24}
-              className="mr-2"
             />
-            <h1 className="text-md sm:text-xl font-semibold truncate">
+            <h1 className="text-md sm:text-xl font-semibold">
               Google Cloud Study Jams 25 - 26
             </h1>
           </div>
-          <div className="flex-1 flex justify-end">
+          <div className="flex items-center gap-2">
             <div className="hidden md:block">
               <ThemeToggle />
             </div>
