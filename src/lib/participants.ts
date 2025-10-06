@@ -27,22 +27,22 @@ export async function getParticipants(): Promise<Participant[]> {
         skipEmptyLines: true,
         complete: (results) => {
           const participants = results.data.map((row: any, index: number) => {
-            const name = row['Student Name'];
+            const name = row['User Name'];
             
             // Skip header or invalid rows
-            if (!name || name === 'Student Name') {
+            if (!name || name === 'User Name') {
               return null;
             }
 
             return {
               id: `${name.replace(/\s+/g, '-').toLowerCase()}-${index}`,
               name: name,
-              email: row['Student Email'],
+              email: row['User Email'],
               profileUrl: row['Google Cloud Skills Boost Profile URL'],
               profileUrlStatus: row['Profile URL Status'] === 'All Good' ? 'All Good' : 'Incomplete',
               accessCodeRedemption: row['Access Code Redemption Status'] === 'Yes' ? 'Redeemed' : 'Pending',
               redemptionStatus: row['Redemption Status'] === 'Yes',
-              allCompleted: row['# of Skill Badges Completed'] >= 10,
+              allCompleted: Number(row['# of Skill Badges Completed'] || 0) >= 10,
               skillBadges: Number(row['# of Skill Badges Completed'] || 0),
               arcadeGames: row['# of Arcade Games Completed'] ? Number(row['# of Arcade Games Completed']) : null,
             };
