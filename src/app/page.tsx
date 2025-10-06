@@ -82,18 +82,7 @@ export default function Home() {
     <div className="min-h-screen bg-background text-foreground">
       <header className="bg-muted/40 p-3 flex items-center justify-between">
         <div className="flex items-center">
-          <svg
-            className="w-6 h-6 mr-2"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5zm4 4h-2v-2h2v2zm0-4h-2V7h2v5z"
-              fill="#F4B400"
-            />
-            <path d="M0 0h24v24H0z" fill="none" />
-          </svg>
+          <Image src="/assets/google-cloud.png" alt="Google Cloud Logo" width={24} height={24} className="mr-2" />
           <h1 className="text-lg font-semibold">
             Google Cloud Study Jams 25 - 26
           </h1>
