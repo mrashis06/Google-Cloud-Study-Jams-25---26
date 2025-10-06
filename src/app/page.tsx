@@ -99,18 +99,18 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="bg-muted/40 p-3 flex items-center justify-between relative">
-        <div className="flex items-center justify-center absolute inset-0">
-          <Image src="/assets/google-cloud.png" alt="Google Cloud Logo" width={24} height={24} className="mr-2" />
-          <h1 className="text-xl font-semibold">
-            Google Cloud Study Jams 25 - 26
-          </h1>
-        </div>
-        <div className="z-10">
-          {/* This empty div is a placeholder to balance the flexbox */}
-        </div>
-        <div className="z-10">
-          <ThemeToggle />
+      <header className="bg-muted/40 p-4">
+        <div className="container mx-auto flex items-center justify-between">
+          <div className="flex-1"></div>
+          <div className="flex-1 flex items-center justify-center text-center">
+            <Image src="/assets/google-cloud.png" alt="Google Cloud Logo" width={24} height={24} className="mr-2" />
+            <h1 className="text-md sm:text-xl font-semibold truncate">
+              Google Cloud Study Jams 25 - 26
+            </h1>
+          </div>
+          <div className="flex-1 flex justify-end">
+            <ThemeToggle />
+          </div>
         </div>
       </header>
 
@@ -177,46 +177,48 @@ export default function Home() {
         </div>
 
         <Card className="overflow-hidden shadow-lg">
-          <Table>
-            <TableHeader>
-              <TableRow className="bg-primary hover:bg-primary/90">
-                <TableHead className="text-primary-foreground">#</TableHead>
-                <TableHead className="text-primary-foreground">Name</TableHead>
-                <TableHead className="text-primary-foreground">Redemption Status</TableHead>
-                <TableHead className="text-primary-foreground">All Completed</TableHead>
-                <TableHead className="text-primary-foreground">
-                  No of Skill Badges Completed
-                </TableHead>
-                <TableHead className="text-primary-foreground">
-                  # of Arcade Games Completed
-                </TableHead>
-                <TableHead className="text-primary-foreground">Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {filteredParticipants.map((participant, index) => (
-                <TableRow key={participant.id}>
-                  <TableCell>
-                    <RankingBadge rank={index + 1} />
-                  </TableCell>
-                  <TableCell>{participant.name}</TableCell>
-                  <TableCell>
-                    <Badge variant={participant.accessCodeRedemption === 'Redeemed' ? "success" : "destructive"}>
-                      {participant.accessCodeRedemption}
-                    </Badge>
-                  </TableCell>
-                  <TableCell>{participant.allCompleted ? 'Yes' : 'No !'}</TableCell>
-                  <TableCell>{participant.skillBadges}</TableCell>
-                  <TableCell>{participant.arcadeGames ?? '-'}</TableCell>
-                  <TableCell>
-                    <Link href={`/participant/${participant.id}`}>
-                      <Button size="sm">View Details</Button>
-                    </Link>
-                  </TableCell>
+          <div className="overflow-x-auto">
+            <Table>
+              <TableHeader>
+                <TableRow className="bg-primary hover:bg-primary/90">
+                  <TableHead className="text-primary-foreground">#</TableHead>
+                  <TableHead className="text-primary-foreground">Name</TableHead>
+                  <TableHead className="text-primary-foreground">Redemption Status</TableHead>
+                  <TableHead className="text-primary-foreground">All Completed</TableHead>
+                  <TableHead className="text-primary-foreground">
+                    No of Skill Badges Completed
+                  </TableHead>
+                  <TableHead className="text-primary-foreground">
+                    # of Arcade Games Completed
+                  </TableHead>
+                  <TableHead className="text-primary-foreground">Actions</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody>
+                {filteredParticipants.map((participant, index) => (
+                  <TableRow key={participant.id}>
+                    <TableCell>
+                      <RankingBadge rank={index + 1} />
+                    </TableCell>
+                    <TableCell>{participant.name}</TableCell>
+                    <TableCell>
+                      <Badge variant={participant.accessCodeRedemption === 'Redeemed' ? "success" : "destructive"}>
+                        {participant.accessCodeRedemption}
+                      </Badge>
+                    </TableCell>
+                    <TableCell>{participant.allCompleted ? 'Yes' : 'No !'}</TableCell>
+                    <TableCell>{participant.skillBadges}</TableCell>
+                    <TableCell>{participant.arcadeGames ?? '-'}</TableCell>
+                    <TableCell>
+                      <Link href={`/participant/${participant.id}`}>
+                        <Button size="sm">View Details</Button>
+                      </Link>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         </Card>
       </main>
     </div>

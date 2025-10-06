@@ -82,24 +82,24 @@ export default function ParticipantProfile({
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="bg-muted/40 p-3 flex items-center justify-between relative">
-        <div className="flex items-center justify-center absolute inset-0">
+      <header className="bg-muted/40 p-4">
+        <div className="container mx-auto flex items-center justify-between">
+          <div className="flex-1"></div>
+          <div className="flex-1 flex items-center justify-center text-center">
             <Image src="/assets/google-cloud.png" alt="Google Cloud Logo" width={24} height={24} className="mr-2" />
-          <h1 className="text-xl font-semibold">
-            Google Cloud Study Jams 25 - 26
-          </h1>
-        </div>
-        <div className="z-10">
-          {/* This empty div is a placeholder to balance the flexbox */}
-        </div>
-        <div className="z-10">
-          <ThemeToggle />
+            <h1 className="text-md sm:text-xl font-semibold truncate">
+              Google Cloud Study Jams 25 - 26
+            </h1>
+          </div>
+          <div className="flex-1 flex justify-end">
+            <ThemeToggle />
+          </div>
         </div>
       </header>
-
-      <div className="bg-card shadow-sm">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center">
+      
+      <div className="bg-card shadow-sm sticky top-0 z-10">
+        <div className="container mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div className="flex items-center text-center sm:text-left">
             <Image src="/assets/logo.png" alt="GDG On Campus Logo" width={40} height={40} className="mr-2"/>
             <div>
               <h2 className="text-lg font-bold">
@@ -108,8 +108,8 @@ export default function ParticipantProfile({
               <p className="text-muted-foreground text-sm">MCKV Institute of Engineering</p>
             </div>
           </div>
-          <Link href="/">
-            <Button>
+          <Link href="/" className="w-full sm:w-auto">
+            <Button className="w-full">
               <ArrowLeft className="mr-2 h-4 w-4" /> Back to Leaderboard
             </Button>
           </Link>
@@ -117,8 +117,8 @@ export default function ParticipantProfile({
       </div>
 
       <main className="container mx-auto px-4 py-8">
-        <Card className="max-w-4xl mx-auto p-8 shadow-lg rounded-xl">
-          <h1 className="text-3xl font-bold mb-6">
+        <Card className="max-w-4xl mx-auto p-4 sm:p-8 shadow-lg rounded-xl">
+          <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-center sm:text-left">
             {participant.name}
             {participant.skillBadges >= 10 && <MedalIcon />}
           </h1>
@@ -126,11 +126,11 @@ export default function ParticipantProfile({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 mb-8">
             <div>
               <p className="text-sm text-muted-foreground">Email</p>
-              <p className="font-medium">{participant.email}</p>
+              <p className="font-medium break-words">{participant.email}</p>
             </div>
             <div>
               <p className="text-sm text-muted-foreground">Profile URL</p>
-              <a href={participant.profileUrl} target="_blank" rel="noopener noreferrer" className="font-medium text-primary hover:underline">
+              <a href={participant.profileUrl} target="_blank" rel="noopener noreferrer" className="font-medium text-primary hover:underline break-words">
                 View Profile &rarr;
               </a>
             </div>
@@ -182,13 +182,13 @@ export default function ParticipantProfile({
                     <MedalIcon /> 
                     <span className="ml-2">Completed Skill Badges ({participant.completedSkillBadges.length})</span>
                 </h2>
-                <div className="relative pl-8">
+                <div className="relative pl-6 sm:pl-8">
                     <div className="absolute left-3 top-0 h-full border-l-2 border-primary"></div>
-                    <ol className="list-inside">
+                    <ol className="list-inside space-y-2">
                         {participant.completedSkillBadges.map((badge, index) => (
-                             <li key={index} className="relative pl-4 py-2 rounded-md hover:bg-muted/50">
-                                <span className="absolute left-[-2.5rem] top-2.5 text-primary font-bold w-12 text-center">{index + 1}.</span>
-                                {badge}
+                             <li key={index} className="relative flex items-start">
+                                <span className="absolute left-[-3rem] sm:left-[-3.5rem] top-1 text-primary font-bold w-12 text-center">{index + 1}.</span>
+                                <span className="ml-2">{badge}</span>
                             </li>
                         ))}
                     </ol>
