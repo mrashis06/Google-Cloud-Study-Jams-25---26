@@ -1,0 +1,214 @@
+'use client';
+import { getParticipantById, type Participant } from '@/lib/participants';
+import { useEffect, useState } from 'react';
+import { ArrowLeft, CheckCircle2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+
+function GdgLogo() {
+  return (
+    <svg
+      width="40"
+      height="40"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="mr-2"
+    >
+      <path
+        d="M12 2.18182L5.81818 5.72727V12.8182L12 16.3636L18.1818 12.8182V5.72727L12 2.18182Z"
+        fill="#4285F4"
+      ></path>
+      <path
+        d="M12 2.18182L5.81818 5.72727L2 7.90909L8.18182 4.36364L12 2.18182Z"
+        fill="#0F9D58"
+      ></path>
+      <path
+        d="M12 2.18182L18.1818 5.72727L22 7.90909L15.8182 4.36364L12 2.18182Z"
+        fill="#F4B400"
+      ></path>
+      <path
+        d="M2 7.90909V17.0909L5.81818 12.8182V5.72727L2 7.90909Z"
+        fill="#DB4437"
+      ></path>
+      <path
+        d="M22 7.90909V17.0909L18.1818 12.8182V5.72727L22 7.90909Z"
+        fill="#DB4437"
+      ></path>
+    </svg>
+  );
+}
+
+function MedalIcon() {
+  return (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="inline-block ml-2"
+    >
+      <path
+        d="M12 15C15.866 15 19 11.866 19 8C19 4.13401 15.866 1 12 1C8.13401 1 5 4.13401 5 8C5 11.866 8.13401 15 12 15Z"
+        fill="#FFD700"
+      />
+      <path
+        d="M12 13C14.7614 13 17 10.7614 17 8C17 5.23858 14.7614 3 12 3C9.23858 3 7 5.23858 7 8C7 10.7614 9.23858 13 12 13Z"
+        fill="#FFA500"
+      />
+      <path
+        d="M12 10.5C13.3807 10.5 14.5 9.38071 14.5 8C14.5 6.61929 13.3807 5.5 12 5.5C10.6193 5.5 9.5 6.61929 9.5 8C9.5 9.38071 10.6193 10.5 12 10.5Z"
+        fill="#FFD700"
+      />
+      <path
+        d="M10 8L11.5 9.5L14.5 6.5"
+        stroke="white"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9 13.5L5 23"
+        stroke="#4285F4"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M15 13.5L19 23"
+        stroke="#DB4437"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+export default function ParticipantProfile({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const [participant, setParticipant] = useState<Participant | null>(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getParticipantById(params.id);
+      setParticipant(data || null);
+    }
+    fetchData();
+  }, [params.id]);
+
+  if (!participant) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-xl font-semibold">Loading...</div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <header className="bg-gray-800 text-white p-3 flex items-center justify-center">
+        <svg
+          className="w-6 h-6 mr-2"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5zm4 4h-2v-2h2v2zm0-4h-2V7h2v5z"
+            fill="#F4B400"
+          />
+          <path d="M0 0h24v24H0z" fill="none" />
+        </svg>
+        <h1 className="text-lg font-semibold">
+          Google Cloud Study Jams 25 - 26
+        </h1>
+      </header>
+
+      <div className="bg-white shadow-sm">
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+          <div className="flex items-center">
+            <GdgLogo />
+            <div>
+              <h2 className="text-lg font-bold text-gray-700">
+                Google Developer Group On Campus
+              </h2>
+              <p className="text-gray-500 text-sm">MLR Institute of Technology</p>
+            </div>
+          </div>
+          <Link href="/">
+            <Button>
+              <ArrowLeft className="mr-2 h-4 w-4" /> Back to Leaderboard
+            </Button>
+          </Link>
+        </div>
+      </div>
+
+      <main className="container mx-auto px-4 py-8">
+        <Card className="max-w-4xl mx-auto p-8 shadow-lg rounded-xl">
+          <h1 className="text-3xl font-bold mb-6">
+            {participant.name}
+            {participant.skillBadges >= 10 && <MedalIcon />}
+          </h1>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 mb-8">
+            <div>
+              <p className="text-sm text-gray-500">Email</p>
+              <p className="font-medium">{participant.email}</p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-500">Profile URL</p>
+              <a href={participant.profileUrl} target="_blank" rel="noopener noreferrer" className="font-medium text-primary hover:underline">
+                View Profile &rarr;
+              </a>
+            </div>
+            <div>
+              <p className="text-sm text-gray-500">Profile URL Status</p>
+              <Badge variant={participant.profileUrlStatus === 'All Good' ? 'secondary' : 'destructive'}>{participant.profileUrlStatus}</Badge>
+            </div>
+            <div>
+              <p className="text-sm text-gray-500">Access Code Redemption</p>
+              <Badge variant={participant.accessCodeRedemption === 'Redeemed' ? 'secondary' : 'destructive'}>{participant.accessCodeRedemption}</Badge>
+            </div>
+            <div>
+              <p className="text-sm text-gray-500">All Completed</p>
+              <div className="flex items-center">
+                <Badge variant={participant.allCompleted ? 'secondary' : 'destructive'}>
+                  {participant.allCompleted ? 'Yes' : 'No'}
+                </Badge>
+                {participant.allCompleted && <CheckCircle2 className="h-5 w-5 text-green-500 ml-2" />}
+              </div>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <Card className="bg-blue-50 border-blue-200 p-6 rounded-lg">
+              <CardContent className="p-0">
+                <div className="text-4xl font-bold text-blue-600">
+                  {participant.skillBadges}
+                </div>
+                <p className="text-sm font-medium text-blue-500">
+                  Skill Badges Completed
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="bg-green-50 border-green-200 p-6 rounded-lg">
+              <CardContent className="p-0">
+                <div className="text-4xl font-bold text-green-600">
+                  {participant.arcadeGames ?? 0}
+                </div>
+                <p className="text-sm font-medium text-green-500">
+                  Arcade Games Completed
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </Card>
+      </main>
+    </div>
+  );
+}

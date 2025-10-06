@@ -1,3 +1,4 @@
+'use client';
 import { Search } from 'lucide-react';
 import {
   Card,
@@ -17,6 +18,8 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { getParticipants, type Participant } from '@/lib/participants';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 function GdgLogo() {
   return (
@@ -51,8 +54,29 @@ function GdgLogo() {
   );
 }
 
-export default async function Home() {
-  const participants = await getParticipants();
+export default function Home() {
+  const [participants, setParticipants] = useState<Participant[]>([]);
+  const [filteredParticipants, setFilteredParticipants] = useState<Participant[]>([]);
+  const [eligibleCount, setEligibleCount] = useState(0);
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getParticipants();
+      setParticipants(data);
+      setFilteredParticipants(data);
+      const eligible = data.filter(p => p.skillBadges >= 10).length;
+      setEligibleCount(eligible);
+    }
+    fetchData();
+  }, []);
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const searchTerm = event.target.value.toLowerCase();
+    const filtered = participants.filter(p =>
+      p.name.toLowerCase().includes(searchTerm)
+    );
+    setFilteredParticipants(filtered);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -93,7 +117,7 @@ export default async function Home() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-4xl font-bold text-green-600">0</div>
+              <div className="text-4xl font-bold text-green-600">{eligibleCount}</div>
             </CardContent>
           </Card>
           <Card className="border-blue-400 border-2 shadow-lg">
@@ -115,6 +139,7 @@ export default async function Home() {
           <Input
             placeholder="Search Your Name Here"
             className="pl-10 w-full max-w-lg mx-auto bg-white shadow-md rounded-full h-12"
+            onChange={handleSearch}
           />
         </div>
 
@@ -136,7 +161,7 @@ export default async function Home() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {participants.map((participant, index) => (
+              {filteredParticipants.map((participant, index) => (
                 <TableRow key={participant.id}>
                   <TableCell className="font-medium">{index + 1}</TableCell>
                   <TableCell>{participant.name}</TableCell>
@@ -147,9 +172,11 @@ export default async function Home() {
                   </TableCell>
                   <TableCell>{participant.allCompleted ? 'Yes' : 'No !'}</TableCell>
                   <TableCell>{participant.skillBadges}</TableCell>
-                  <TableCell>{participant.arcadeGames || '-'}</TableCell>
+                  <TableCell>{participant.arcadeGames ?? '-'}</TableCell>
                   <TableCell>
-                    <Button size="sm">View Details</Button>
+                    <Link href={`/participant/${participant.id}`}>
+                      <Button size="sm">View Details</Button>
+                    </Link>
                   </TableCell>
                 </TableRow>
               ))}
