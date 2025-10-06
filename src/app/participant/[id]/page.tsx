@@ -264,14 +264,14 @@ export default function ParticipantProfile({
                 </span>
               </h2>
               <div className="relative">
-                <div className="absolute left-4 top-0 h-full w-0.5 bg-primary/40"></div>
-                <ol className="list-none space-y-4">
+                <div className="absolute left-4 top-0 h-full w-0.5 bg-border"></div>
+                <ol className="list-none space-y-6">
                   {participant.completedSkillBadges.map((badge, index) => (
-                    <li key={index} className="relative flex items-start pl-12">
-                       <span className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center justify-center h-8 w-8 rounded-md bg-primary/80 text-primary-foreground font-bold text-sm border border-primary/50 shadow-lg backdrop-blur-sm">
+                    <li key={index} className="relative flex items-center pl-12">
+                       <span className="absolute left-0 flex items-center justify-center h-8 w-8 rounded-md bg-primary/80 text-primary-foreground font-bold text-sm border border-primary/50 shadow-lg backdrop-blur-sm">
                         {index + 1}
                       </span>
-                      <span className="ml-4 pt-1">{badge}</span>
+                      <span className="ml-4">{badge}</span>
                     </li>
                   ))}
                 </ol>
