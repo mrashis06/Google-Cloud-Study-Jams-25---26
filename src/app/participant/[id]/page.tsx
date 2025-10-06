@@ -141,7 +141,7 @@ export default function ParticipantProfile({
               <h2 className="text-lg font-bold">
                 Google Developer Group On Campus
               </h2>
-              <p className="text-muted-foreground text-sm">MLR Institute of Technology</p>
+              <p className="text-muted-foreground text-sm">MCKV Institute of Engineering</p>
             </div>
           </div>
           <Link href="/">
