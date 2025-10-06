@@ -19,7 +19,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { getParticipants, type Participant } from '@/lib/participants';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 function GdgLogo() {
   return (
@@ -58,6 +58,10 @@ export default function Home() {
   const [participants, setParticipants] = useState<Participant[]>([]);
   const [filteredParticipants, setFilteredParticipants] = useState<Participant[]>([]);
   const [eligibleCount, setEligibleCount] = useState(0);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [suggestions, setSuggestions] = useState<Participant[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const searchContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -70,12 +74,39 @@ export default function Home() {
     fetchData();
   }, []);
 
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const searchTerm = event.target.value.toLowerCase();
-    const filtered = participants.filter(p =>
-      p.name.toLowerCase().includes(searchTerm)
-    );
-    setFilteredParticipants(filtered);
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (searchContainerRef.current && !searchContainerRef.current.contains(event.target as Node)) {
+        setShowSuggestions(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setSearchTerm(value);
+    if (value) {
+      const filtered = participants.filter(p =>
+        p.name.toLowerCase().includes(value.toLowerCase())
+      );
+      setSuggestions(filtered);
+      setShowSuggestions(true);
+      setFilteredParticipants(filtered); 
+    } else {
+      setSuggestions([]);
+      setShowSuggestions(false);
+      setFilteredParticipants(participants);
+    }
+  };
+
+  const handleSuggestionClick = (participant: Participant) => {
+    setSearchTerm(participant.name);
+    setFilteredParticipants([participant]);
+    setShowSuggestions(false);
   };
 
   return (
@@ -134,13 +165,30 @@ export default function Home() {
           </Card>
         </div>
 
-        <div className="relative mb-8">
+        <div className="relative w-full max-w-lg mx-auto mb-8" ref={searchContainerRef}>
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
           <Input
             placeholder="Search Your Name Here"
-            className="pl-10 w-full max-w-lg mx-auto bg-white shadow-md rounded-full h-12"
-            onChange={handleSearch}
+            className="pl-10 w-full bg-white shadow-md rounded-full h-12"
+            value={searchTerm}
+            onChange={handleSearchChange}
+            onFocus={() => setShowSuggestions(searchTerm.length > 0)}
           />
+          {showSuggestions && suggestions.length > 0 && (
+            <Card className="absolute z-10 w-full mt-1 bg-white shadow-lg rounded-md overflow-hidden">
+              <ul className="max-h-60 overflow-y-auto">
+                {suggestions.map(suggestion => (
+                  <li
+                    key={suggestion.id}
+                    className="px-4 py-2 cursor-pointer hover:bg-gray-100"
+                    onClick={() => handleSuggestionClick(suggestion)}
+                  >
+                    {suggestion.name}
+                  </li>
+                ))}
+              </ul>
+            </Card>
+          )}
         </div>
 
         <Card className="overflow-hidden shadow-lg">
