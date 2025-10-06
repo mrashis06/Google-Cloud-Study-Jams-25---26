@@ -268,7 +268,7 @@ export default function ParticipantProfile({
                 <ol className="list-none space-y-4">
                   {participant.completedSkillBadges.map((badge, index) => (
                     <li key={index} className="relative flex items-start pl-12">
-                       <span className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center justify-center h-8 w-8 rounded-full bg-primary text-primary-foreground font-bold text-sm">
+                       <span className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center justify-center h-8 w-8 rounded-md bg-primary/80 text-primary-foreground font-bold text-sm border border-primary/50 shadow-lg backdrop-blur-sm">
                         {index + 1}
                       </span>
                       <span className="ml-4 pt-1">{badge}</span>
