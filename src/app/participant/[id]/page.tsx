@@ -4,43 +4,10 @@ import { useEffect, useState } from 'react';
 import { ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ThemeToggle } from '@/components/theme-toggle';
-
-function GdgLogo() {
-  return (
-    <svg
-      width="40"
-      height="40"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="mr-2"
-    >
-      <path
-        d="M12 2.18182L5.81818 5.72727V12.8182L12 16.3636L18.1818 12.8182V5.72727L12 2.18182Z"
-        fill="#4285F4"
-      ></path>
-      <path
-        d="M12 2.18182L5.81818 5.72727L2 7.90909L8.18182 4.36364L12 2.18182Z"
-        fill="#0F9D58"
-      ></path>
-      <path
-        d="M12 2.18182L18.1818 5.72727L22 7.90909L15.8182 4.36364L12 2.18182Z"
-        fill="#F4B400"
-      ></path>
-      <path
-        d="M2 7.90909V17.0909L5.81818 12.8182V5.72727L2 7.90909Z"
-        fill="#DB4437"
-      ></path>
-      <path
-        d="M22 7.90909V17.0909L18.1818 12.8182V5.72727L22 7.90909Z"
-        fill="#DB4437"
-      ></path>
-    </svg>
-  );
-}
 
 function MedalIcon() {
   return (
@@ -136,7 +103,7 @@ export default function ParticipantProfile({
       <div className="bg-card shadow-sm">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center">
-            <GdgLogo />
+            <Image src="/assets/logo.png" alt="GDG On Campus Logo" width={40} height={40} className="mr-2"/>
             <div>
               <h2 className="text-lg font-bold">
                 Google Developer Group On Campus

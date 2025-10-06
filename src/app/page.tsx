@@ -19,41 +19,9 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { getParticipants, type Participant } from '@/lib/participants';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useState, useRef } from 'react';
 import { ThemeToggle } from '@/components/theme-toggle';
-
-function GdgLogo() {
-  return (
-    <svg
-      width="40"
-      height="40"
-      viewBox="0 0 40 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M20.2449 3.06122L10.2041 8.89796V20.5714L20.2449 26.4082L30.2857 20.5714V8.89796L20.2449 3.06122Z"
-        fill="#4285F4"
-      />
-      <path
-        d="M20.2449 3.06122L10.2041 8.89796L4.16327 12.449L14.2041 6.61224L20.2449 3.06122Z"
-        fill="#0F9D58"
-      />
-      <path
-        d="M20.2449 3.06122L30.2857 8.89796L36.3265 12.449L26.2857 6.61224L20.2449 3.06122Z"
-        fill="#F4B400"
-      />
-      <path
-        d="M4.16327 12.449V28.102L10.2041 20.5714V8.89796L4.16327 12.449Z"
-        fill="#DB4437"
-      />
-      <path
-        d="M36.3265 12.449V28.102L30.2857 20.5714V8.89796L36.3265 12.449Z"
-        fill="#DB4437"
-      />
-    </svg>
-  );
-}
 
 export default function Home() {
   const [participants, setParticipants] = useState<Participant[]>([]);
@@ -135,7 +103,7 @@ export default function Home() {
 
       <main className="container mx-auto px-4 py-8">
         <div className="flex items-center mb-8">
-          <GdgLogo />
+          <Image src="/assets/logo.png" alt="GDG On Campus Logo" width={40} height={40} />
           <div className="ml-4">
             <h2 className="text-xl font-bold">
               Google Developer Group On Campus
