@@ -1,6 +1,6 @@
 'use client';
 import { getParticipantById, type Participant } from '@/lib/participants';
-import { useEffect, useState, use } from 'react';
+import { useEffect, useState } from 'react';
 import { ArrowLeft, CheckCircle2, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -120,7 +120,7 @@ export default function ParticipantProfile({
       <header className="bg-muted/40 p-4">
         <div className="container mx-auto flex items-center justify-between">
           <div className="flex-1"></div>
-          <div className="flex-1 flex items-center justify-center text-center">
+          <div className="flex flex-1 items-center justify-center text-center">
             <Image
               src="/assets/google-cloud.png"
               alt="Google Cloud Logo"
@@ -264,14 +264,14 @@ export default function ParticipantProfile({
                 </span>
               </h2>
               <div className="relative">
-                <div className="absolute left-4 top-0 h-full w-0.5 bg-primary/20"></div>
-                <ol className="list-none space-y-4 pl-10">
+                <div className="absolute left-4 top-0 h-full w-0.5 bg-primary/40"></div>
+                <ol className="list-none space-y-4">
                   {participant.completedSkillBadges.map((badge, index) => (
-                    <li key={index} className="relative flex items-start">
-                       <span className="absolute -left-7 top-1/2 -translate-y-1/2 flex items-center justify-center h-6 w-6 rounded-full bg-primary text-primary-foreground font-bold text-sm">
+                    <li key={index} className="relative flex items-start pl-12">
+                       <span className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center justify-center h-8 w-8 rounded-full bg-primary text-primary-foreground font-bold text-sm">
                         {index + 1}
                       </span>
-                      <span className="ml-2 pt-1">{badge}</span>
+                      <span className="ml-4 pt-1">{badge}</span>
                     </li>
                   ))}
                 </ol>
