@@ -264,7 +264,7 @@ export default function ParticipantProfile({
                 </span>
               </h2>
               <div className="relative">
-                <div className="absolute left-4 top-0 h-full w-0.5 bg-border"></div>
+                <div className="absolute left-4 top-0 h-full w-1 bg-border/70"></div>
                 <ol className="list-none space-y-6">
                   {participant.completedSkillBadges.map((badge, index) => (
                     <li key={index} className="relative flex items-center pl-12">
