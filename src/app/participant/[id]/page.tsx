@@ -136,16 +136,16 @@ export default function ParticipantProfile({
             </div>
             <div>
               <p className="text-sm text-muted-foreground">Profile URL Status</p>
-              <Badge variant={participant.profileUrlStatus === 'All Good' ? 'secondary' : 'destructive'}>{participant.profileUrlStatus}</Badge>
+              <Badge variant={participant.profileUrlStatus === 'All Good' ? 'success' : 'destructive'}>{participant.profileUrlStatus}</Badge>
             </div>
             <div>
               <p className="text-sm text-muted-foreground">Access Code Redemption</p>
-              <Badge variant={participant.accessCodeRedemption === 'Redeemed' ? 'secondary' : 'destructive'}>{participant.accessCodeRedemption}</Badge>
+              <Badge variant={participant.accessCodeRedemption === 'Redeemed' ? 'success' : 'destructive'}>{participant.accessCodeRedemption}</Badge>
             </div>
             <div>
               <p className="text-sm text-muted-foreground">All Completed</p>
               <div className="flex items-center">
-                <Badge variant={participant.allCompleted ? 'secondary' : 'destructive'}>
+                <Badge variant={participant.allCompleted ? 'success' : 'destructive'}>
                   {participant.allCompleted ? 'Yes' : 'No'}
                 </Badge>
                 {participant.allCompleted && <CheckCircle2 className="h-5 w-5 text-green-500 ml-2" />}
@@ -182,12 +182,12 @@ export default function ParticipantProfile({
                     <MedalIcon /> 
                     <span className="ml-2">Completed Skill Badges ({participant.completedSkillBadges.length})</span>
                 </h2>
-                <div className="relative pl-6">
-                    <div className="absolute left-2.5 top-0 h-full border-l-2 border-primary"></div>
+                <div className="relative pl-8">
+                    <div className="absolute left-3 top-0 h-full border-l-2 border-primary"></div>
                     <ol className="list-inside">
                         {participant.completedSkillBadges.map((badge, index) => (
-                            <li key={index} className="relative pl-8 py-2 rounded-md hover:bg-muted/50">
-                                <span className="absolute left-0 top-2.5 text-primary font-bold w-6 text-center">{index + 1}.</span>
+                             <li key={index} className="relative pl-4 py-2 rounded-md hover:bg-muted/50">
+                                <span className="absolute left-[-2.5rem] top-2.5 text-primary font-bold w-12 text-center">{index + 1}.</span>
                                 {badge}
                             </li>
                         ))}

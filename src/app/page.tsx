@@ -201,7 +201,7 @@ export default function Home() {
                   </TableCell>
                   <TableCell>{participant.name}</TableCell>
                   <TableCell>
-                    <Badge variant={participant.accessCodeRedemption === 'Redeemed' ? "secondary" : "destructive"}>
+                    <Badge variant={participant.accessCodeRedemption === 'Redeemed' ? "success" : "destructive"}>
                       {participant.accessCodeRedemption}
                     </Badge>
                   </TableCell>
