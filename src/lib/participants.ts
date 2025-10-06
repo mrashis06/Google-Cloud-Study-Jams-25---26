@@ -41,8 +41,8 @@ export async function getParticipants(): Promise<Participant[]> {
               profileUrl: row['Google Cloud Skills Boost Profile URL'],
               profileUrlStatus: row['Profile URL Status'] === 'All Good' ? 'All Good' : 'Incomplete',
               accessCodeRedemption: row['Access Code Redemption Status'] === 'Yes' ? 'Redeemed' : 'Pending',
-              redemptionStatus: row['Redemption Status'] === 'Yes',
-              allCompleted: Number(row['# of Skill Badges Completed'] || 0) >= 10,
+              redemptionStatus: row['Access Code Redemption Status'] === 'Yes',
+              allCompleted: row['All Skill Badges & Games Completed'] === 'Yes',
               skillBadges: Number(row['# of Skill Badges Completed'] || 0),
               arcadeGames: row['# of Arcade Games Completed'] ? Number(row['# of Arcade Games Completed']) : null,
             };
