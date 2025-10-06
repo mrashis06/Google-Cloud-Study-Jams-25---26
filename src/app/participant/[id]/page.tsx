@@ -142,32 +142,37 @@ export default function ParticipantProfile({
         </div>
       </header>
 
-      <div className="bg-card shadow-sm sticky top-0 z-10">
-        <div className="container mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <div className="flex items-center text-center sm:text-left">
-            <Image
-              src="/assets/logo.png"
-              alt="GDG On Campus Logo"
-              width={40}
-              height={40}
-              className="mr-2"
-            />
-            <div>
-              <h2 className="text-lg font-bold">
-                Google Developer Group On Campus
-              </h2>
-              <p className="text-muted-foreground text-sm">
-                MCKV Institute of Engineering
-              </p>
+      <div className="sticky top-0 z-10 bg-background/80 backdrop-blur-sm py-4">
+        <div className="container mx-auto px-4">
+          <Card className="max-w-4xl mx-auto p-4 shadow-lg">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+              <div className="flex items-center text-center sm:text-left">
+                <Image
+                  src="/assets/logo.png"
+                  alt="GDG On Campus Logo"
+                  width={40}
+                  height={40}
+                  className="mr-2"
+                />
+                <div>
+                  <h2 className="text-lg font-bold">
+                    Google Developer Group On Campus
+                  </h2>
+                  <p className="text-muted-foreground text-sm">
+                    MCKV Institute of Engineering
+                  </p>
+                </div>
+              </div>
+              <Link href="/" className="w-full sm:w-auto">
+                <Button className="w-full">
+                  <ArrowLeft className="mr-2 h-4 w-4" /> Back to Leaderboard
+                </Button>
+              </Link>
             </div>
-          </div>
-          <Link href="/" className="w-full sm:w-auto">
-            <Button className="w-full">
-              <ArrowLeft className="mr-2 h-4 w-4" /> Back to Leaderboard
-            </Button>
-          </Link>
+          </Card>
         </div>
       </div>
+
 
       <main className="container mx-auto px-4 py-8 space-y-8">
         <Card className="max-w-4xl mx-auto p-4 sm:p-8 shadow-lg rounded-xl">
