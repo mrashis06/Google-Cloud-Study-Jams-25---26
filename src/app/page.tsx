@@ -1,5 +1,5 @@
 'use client';
-import { Search } from 'lucide-react';
+import { Search, Trophy } from 'lucide-react';
 import {
   Card,
   CardContent,
@@ -22,6 +22,25 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState, useRef } from 'react';
 import { ThemeToggle } from '@/components/theme-toggle';
+
+function RankingBadge({ rank }: { rank: number }) {
+  if (rank > 3) {
+    return <span className="font-medium">{rank}</span>;
+  }
+
+  const colors = {
+    1: 'text-yellow-500',
+    2: 'text-gray-400',
+    3: 'text-yellow-700',
+  };
+
+  return (
+    <div className="flex items-center gap-2">
+      <Trophy className={`w-5 h-5 ${colors[rank as keyof typeof colors]}`} />
+      <span className="font-bold">{rank}</span>
+    </div>
+  );
+}
 
 export default function Home() {
   const [participants, setParticipants] = useState<Participant[]>([]);
@@ -172,7 +191,9 @@ export default function Home() {
             <TableBody>
               {filteredParticipants.map((participant, index) => (
                 <TableRow key={participant.id}>
-                  <TableCell className="font-medium">{index + 1}</TableCell>
+                  <TableCell>
+                    <RankingBadge rank={index + 1} />
+                  </TableCell>
                   <TableCell>{participant.name}</TableCell>
                   <TableCell>
                     <Badge variant={participant.accessCodeRedemption === 'Redeemed' ? "secondary" : "destructive"}>
