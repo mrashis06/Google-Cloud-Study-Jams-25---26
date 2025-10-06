@@ -99,14 +99,19 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="bg-muted/40 p-3 flex items-center justify-between">
-        <div className="flex items-center">
+      <header className="bg-muted/40 p-3 flex items-center justify-between relative">
+        <div className="flex items-center justify-center absolute inset-0">
           <Image src="/assets/google-cloud.png" alt="Google Cloud Logo" width={24} height={24} className="mr-2" />
           <h1 className="text-lg font-semibold">
             Google Cloud Study Jams 25 - 26
           </h1>
         </div>
-        <ThemeToggle />
+        <div className="z-10">
+          {/* This empty div is a placeholder to balance the flexbox */}
+        </div>
+        <div className="z-10">
+          <ThemeToggle />
+        </div>
       </header>
 
       <main className="container mx-auto px-4 py-8">
@@ -180,10 +185,10 @@ export default function Home() {
                 <TableHead className="text-primary-foreground">Redemption Status</TableHead>
                 <TableHead className="text-primary-foreground">All Completed</TableHead>
                 <TableHead className="text-primary-foreground">
-                  Number of Skill Badges Completed
+                  No of Skill Badges Completed
                 </TableHead>
                 <TableHead className="text-primary-foreground">
-                  Number of Arcade Games Completed
+                  # of Arcade Games Completed
                 </TableHead>
                 <TableHead className="text-primary-foreground">Actions</TableHead>
               </TableRow>

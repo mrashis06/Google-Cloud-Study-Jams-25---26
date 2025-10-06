@@ -82,14 +82,19 @@ export default function ParticipantProfile({
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="bg-muted/40 p-3 flex items-center justify-between">
-         <div className="flex items-center">
+      <header className="bg-muted/40 p-3 flex items-center justify-between relative">
+        <div className="flex items-center justify-center absolute inset-0">
             <Image src="/assets/google-cloud.png" alt="Google Cloud Logo" width={24} height={24} className="mr-2" />
           <h1 className="text-lg font-semibold">
             Google Cloud Study Jams 25 - 26
           </h1>
         </div>
-        <ThemeToggle />
+        <div className="z-10">
+          {/* This empty div is a placeholder to balance the flexbox */}
+        </div>
+        <div className="z-10">
+          <ThemeToggle />
+        </div>
       </header>
 
       <div className="bg-card shadow-sm">
@@ -182,7 +187,7 @@ export default function ParticipantProfile({
                     <ol className="list-inside">
                         {participant.completedSkillBadges.map((badge, index) => (
                             <li key={index} className="relative pl-8 py-2 rounded-md hover:bg-muted/50">
-                                <span className="absolute left-0 top-2.5 text-primary font-bold">{index + 1}.</span>
+                                <span className="absolute left-0 top-2.5 text-primary font-bold w-6 text-center">{index + 1}.</span>
                                 {badge}
                             </li>
                         ))}
