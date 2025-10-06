@@ -43,7 +43,7 @@ export async function getParticipants(): Promise<Participant[]> {
               accessCodeRedemption: row['Access Code Redemption Status'] === 'Yes' ? 'Redeemed' : 'Pending',
               redemptionStatus: row['Access Code Redemption Status'] === 'Yes',
               allCompleted: row['All Skill Badges & Games Completed'] === 'Yes',
-              skillBadges: Number(row['# of Skill Badges Completed'] || 0),
+              skillBadges: Number(row['No of Skill Badges Completed'] || 0),
               arcadeGames: row['# of Arcade Games Completed'] ? Number(row['# of Arcade Games Completed']) : null,
             };
           }).filter(p => p !== null) as Participant[];
