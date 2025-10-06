@@ -60,14 +60,15 @@ export default function ParticipantProfile({
   params: { id: string };
 }) {
   const [participant, setParticipant] = useState<Participant | null>(null);
+  const id = params.id;
 
   useEffect(() => {
     async function fetchData() {
-      const data = await getParticipantById(params.id);
+      const data = await getParticipantById(id);
       setParticipant(data || null);
     }
     fetchData();
-  }, [params.id]);
+  }, [id]);
 
   if (!participant) {
     return (
