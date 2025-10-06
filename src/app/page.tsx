@@ -252,7 +252,7 @@ export default function Home() {
                     No of Skill Badges Completed
                   </TableHead>
                   <TableHead className="text-primary-foreground">
-                    No of Arcade Games Completed
+                    No. of Arcade Games Completed
                   </TableHead>
                   <TableHead className="text-primary-foreground">
                     Actions
