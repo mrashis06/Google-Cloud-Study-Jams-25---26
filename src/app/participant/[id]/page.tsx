@@ -5,7 +5,7 @@ import { ArrowLeft, CheckCircle2, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ThemeToggle } from '@/components/theme-toggle';
 import {
@@ -169,7 +169,7 @@ export default function ParticipantProfile({
         </div>
       </div>
 
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-8 space-y-8">
         <Card className="max-w-4xl mx-auto p-4 sm:p-8 shadow-lg rounded-xl">
           <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-center sm:text-left">
             {participant.name}
@@ -255,15 +255,19 @@ export default function ParticipantProfile({
               </CardContent>
             </Card>
           </div>
+        </Card>
 
-          {participant.completedSkillBadges.length > 0 && (
-            <div className="mt-8">
-              <h2 className="text-xl font-bold mb-4 flex items-center">
+        {participant.completedSkillBadges.length > 0 && (
+          <Card className="max-w-4xl mx-auto shadow-lg rounded-xl">
+            <CardHeader>
+              <CardTitle className="flex items-center">
                 <MedalIcon />
                 <span className="ml-2">
                   Completed Skill Badges ({participant.completedSkillBadges.length})
                 </span>
-              </h2>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
               <div className="relative">
                 <div className="absolute left-4 top-0 h-full w-1 bg-border"></div>
                 <ol className="list-none space-y-6">
@@ -277,9 +281,9 @@ export default function ParticipantProfile({
                   ))}
                 </ol>
               </div>
-            </div>
-          )}
-        </Card>
+            </CardContent>
+          </Card>
+        )}
       </main>
     </div>
   );
