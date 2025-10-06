@@ -177,11 +177,11 @@ export default function ParticipantProfile({
                     <MedalIcon /> 
                     <span className="ml-2">Completed Skill Badges ({participant.completedSkillBadges.length})</span>
                 </h2>
-                <div className="relative pl-6">
+                <div className="relative pl-4">
                     <div className="absolute left-0 top-0 h-full border-l-2 border-primary"></div>
                     <ol className="list-inside">
                         {participant.completedSkillBadges.map((badge, index) => (
-                            <li key={index} className="relative pl-4 py-2 rounded-md hover:bg-muted/50">
+                            <li key={index} className="relative pl-8 py-2 rounded-md hover:bg-muted/50">
                                 <span className="absolute left-0 top-2.5 text-primary font-bold">{index + 1}.</span>
                                 {badge}
                             </li>
