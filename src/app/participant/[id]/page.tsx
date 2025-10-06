@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { ThemeToggle } from '@/components/theme-toggle';
 
 function GdgLogo() {
   return (
@@ -103,41 +104,44 @@ export default function ParticipantProfile({
 
   if (!participant) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-xl font-semibold">Loading...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-gray-800 text-white p-3 flex items-center justify-center">
-        <svg
-          className="w-6 h-6 mr-2"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5zm4 4h-2v-2h2v2zm0-4h-2V7h2v5z"
-            fill="#F4B400"
-          />
-          <path d="M0 0h24v24H0z" fill="none" />
-        </svg>
-        <h1 className="text-lg font-semibold">
-          Google Cloud Study Jams 25 - 26
-        </h1>
+    <div className="min-h-screen bg-background text-foreground">
+      <header className="bg-muted/40 p-3 flex items-center justify-between">
+         <div className="flex items-center">
+          <svg
+            className="w-6 h-6 mr-2"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5zm4 4h-2v-2h2v2zm0-4h-2V7h2v5z"
+              fill="#F4B400"
+            />
+            <path d="M0 0h24v24H0z" fill="none" />
+          </svg>
+          <h1 className="text-lg font-semibold">
+            Google Cloud Study Jams 25 - 26
+          </h1>
+        </div>
+        <ThemeToggle />
       </header>
 
-      <div className="bg-white shadow-sm">
+      <div className="bg-card shadow-sm">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center">
             <GdgLogo />
             <div>
-              <h2 className="text-lg font-bold text-gray-700">
+              <h2 className="text-lg font-bold">
                 Google Developer Group On Campus
               </h2>
-              <p className="text-gray-500 text-sm">MLR Institute of Technology</p>
+              <p className="text-muted-foreground text-sm">MLR Institute of Technology</p>
             </div>
           </div>
           <Link href="/">
@@ -157,25 +161,25 @@ export default function ParticipantProfile({
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 mb-8">
             <div>
-              <p className="text-sm text-gray-500">Email</p>
+              <p className="text-sm text-muted-foreground">Email</p>
               <p className="font-medium">{participant.email}</p>
             </div>
             <div>
-              <p className="text-sm text-gray-500">Profile URL</p>
+              <p className="text-sm text-muted-foreground">Profile URL</p>
               <a href={participant.profileUrl} target="_blank" rel="noopener noreferrer" className="font-medium text-primary hover:underline">
                 View Profile &rarr;
               </a>
             </div>
             <div>
-              <p className="text-sm text-gray-500">Profile URL Status</p>
+              <p className="text-sm text-muted-foreground">Profile URL Status</p>
               <Badge variant={participant.profileUrlStatus === 'All Good' ? 'secondary' : 'destructive'}>{participant.profileUrlStatus}</Badge>
             </div>
             <div>
-              <p className="text-sm text-gray-500">Access Code Redemption</p>
+              <p className="text-sm text-muted-foreground">Access Code Redemption</p>
               <Badge variant={participant.accessCodeRedemption === 'Redeemed' ? 'secondary' : 'destructive'}>{participant.accessCodeRedemption}</Badge>
             </div>
             <div>
-              <p className="text-sm text-gray-500">All Completed</p>
+              <p className="text-sm text-muted-foreground">All Completed</p>
               <div className="flex items-center">
                 <Badge variant={participant.allCompleted ? 'secondary' : 'destructive'}>
                   {participant.allCompleted ? 'Yes' : 'No'}
@@ -186,22 +190,22 @@ export default function ParticipantProfile({
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            <Card className="bg-blue-50 border-blue-200 p-6 rounded-lg">
+            <Card className="bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800 p-6 rounded-lg">
               <CardContent className="p-0">
-                <div className="text-4xl font-bold text-blue-600">
+                <div className="text-4xl font-bold text-blue-600 dark:text-blue-400">
                   {participant.skillBadges}
                 </div>
-                <p className="text-sm font-medium text-blue-500">
+                <p className="text-sm font-medium text-blue-500 dark:text-blue-300">
                   Skill Badges Completed
                 </p>
               </CardContent>
             </Card>
-            <Card className="bg-green-50 border-green-200 p-6 rounded-lg">
+            <Card className="bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800 p-6 rounded-lg">
               <CardContent className="p-0">
-                <div className="text-4xl font-bold text-green-600">
+                <div className="text-4xl font-bold text-green-600 dark:text-green-400">
                   {participant.arcadeGames ?? 0}
                 </div>
-                <p className="text-sm font-medium text-green-500">
+                <p className="text-sm font-medium text-green-500 dark:text-green-300">
                   Arcade Games Completed
                 </p>
               </CardContent>

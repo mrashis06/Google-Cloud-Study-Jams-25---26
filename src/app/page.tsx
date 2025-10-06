@@ -20,6 +20,7 @@ import { Input } from '@/components/ui/input';
 import { getParticipants, type Participant } from '@/lib/participants';
 import Link from 'next/link';
 import { useEffect, useState, useRef } from 'react';
+import { ThemeToggle } from '@/components/theme-toggle';
 
 function GdgLogo() {
   return (
@@ -110,33 +111,36 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-gray-800 text-white p-3 flex items-center justify-center">
-        <svg
-          className="w-6 h-6 mr-2"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5zm4 4h-2v-2h2v2zm0-4h-2V7h2v5z"
-            fill="#F4B400"
-          />
-          <path d="M0 0h24v24H0z" fill="none" />
-        </svg>
-        <h1 className="text-lg font-semibold">
-          Google Cloud Study Jams 25 - 26
-        </h1>
+    <div className="min-h-screen bg-background text-foreground">
+      <header className="bg-muted/40 p-3 flex items-center justify-between">
+        <div className="flex items-center">
+          <svg
+            className="w-6 h-6 mr-2"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5zm4 4h-2v-2h2v2zm0-4h-2V7h2v5z"
+              fill="#F4B400"
+            />
+            <path d="M0 0h24v24H0z" fill="none" />
+          </svg>
+          <h1 className="text-lg font-semibold">
+            Google Cloud Study Jams 25 - 26
+          </h1>
+        </div>
+        <ThemeToggle />
       </header>
 
       <main className="container mx-auto px-4 py-8">
         <div className="flex items-center mb-8">
           <GdgLogo />
           <div className="ml-4">
-            <h2 className="text-xl font-bold text-gray-700">
+            <h2 className="text-xl font-bold">
               Google Developer Group On Campus
             </h2>
-            <p className="text-gray-500">MCKV Institute of Engineering</p>
+            <p className="text-muted-foreground">MCKV Institute of Engineering</p>
           </div>
         </div>
 
@@ -166,21 +170,21 @@ export default function Home() {
         </div>
 
         <div className="relative w-full max-w-lg mx-auto mb-8" ref={searchContainerRef}>
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <Input
             placeholder="Search Your Name Here"
-            className="pl-10 w-full bg-white shadow-md rounded-full h-12"
+            className="pl-10 w-full bg-card shadow-md rounded-full h-12"
             value={searchTerm}
             onChange={handleSearchChange}
             onFocus={() => setShowSuggestions(searchTerm.length > 0)}
           />
           {showSuggestions && suggestions.length > 0 && (
-            <Card className="absolute z-10 w-full mt-1 bg-white shadow-lg rounded-md overflow-hidden">
+            <Card className="absolute z-10 w-full mt-1 bg-card shadow-lg rounded-md overflow-hidden">
               <ul className="max-h-60 overflow-y-auto">
                 {suggestions.map(suggestion => (
                   <li
                     key={suggestion.id}
-                    className="px-4 py-2 cursor-pointer hover:bg-gray-100"
+                    className="px-4 py-2 cursor-pointer hover:bg-muted"
                     onClick={() => handleSuggestionClick(suggestion)}
                   >
                     {suggestion.name}
@@ -195,17 +199,17 @@ export default function Home() {
           <Table>
             <TableHeader>
               <TableRow className="bg-primary hover:bg-primary/90">
-                <TableHead className="text-white">#</TableHead>
-                <TableHead className="text-white">Name</TableHead>
-                <TableHead className="text-white">Redemption Status</TableHead>
-                <TableHead className="text-white">All Completed</TableHead>
-                <TableHead className="text-white">
+                <TableHead className="text-primary-foreground">#</TableHead>
+                <TableHead className="text-primary-foreground">Name</TableHead>
+                <TableHead className="text-primary-foreground">Redemption Status</TableHead>
+                <TableHead className="text-primary-foreground">All Completed</TableHead>
+                <TableHead className="text-primary-foreground">
                   Number of Skill Badges Completed
                 </TableHead>
-                <TableHead className="text-white">
+                <TableHead className="text-primary-foreground">
                   Number of Arcade Games Completed
                 </TableHead>
-                <TableHead className="text-white">Actions</TableHead>
+                <TableHead className="text-primary-foreground">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
