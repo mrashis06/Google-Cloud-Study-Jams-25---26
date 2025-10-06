@@ -218,8 +218,8 @@ export default function Home() {
                   <TableCell className="font-medium">{index + 1}</TableCell>
                   <TableCell>{participant.name}</TableCell>
                   <TableCell>
-                    <Badge variant={participant.redemptionStatus ? "secondary" : "destructive"}>
-                      {participant.redemptionStatus ? 'Done' : 'Pending'}
+                    <Badge variant={participant.accessCodeRedemption === 'Redeemed' ? "secondary" : "destructive"}>
+                      {participant.accessCodeRedemption}
                     </Badge>
                   </TableCell>
                   <TableCell>{participant.allCompleted ? 'Yes' : 'No !'}</TableCell>
