@@ -6,6 +6,9 @@ import { ThemeProvider } from '@/components/theme-provider';
 export const metadata: Metadata = {
   title: 'Google Cloud Study Jams Leaderboard',
   description: 'Leaderboard for GDG On Campus at MCKV Institute of Engineering',
+  icons: {
+    icon: '/assets/google-cloud.ico',
+  },
 };
 
 export default function RootLayout({
