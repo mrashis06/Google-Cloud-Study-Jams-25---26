@@ -102,7 +102,7 @@ export default function Home() {
       <header className="bg-muted/40 p-3 flex items-center justify-between relative">
         <div className="flex items-center justify-center absolute inset-0">
           <Image src="/assets/google-cloud.png" alt="Google Cloud Logo" width={24} height={24} className="mr-2" />
-          <h1 className="text-lg font-semibold">
+          <h1 className="text-xl font-semibold">
             Google Cloud Study Jams 25 - 26
           </h1>
         </div>

@@ -85,7 +85,7 @@ export default function ParticipantProfile({
       <header className="bg-muted/40 p-3 flex items-center justify-between relative">
         <div className="flex items-center justify-center absolute inset-0">
             <Image src="/assets/google-cloud.png" alt="Google Cloud Logo" width={24} height={24} className="mr-2" />
-          <h1 className="text-lg font-semibold">
+          <h1 className="text-xl font-semibold">
             Google Cloud Study Jams 25 - 26
           </h1>
         </div>
@@ -182,8 +182,8 @@ export default function ParticipantProfile({
                     <MedalIcon /> 
                     <span className="ml-2">Completed Skill Badges ({participant.completedSkillBadges.length})</span>
                 </h2>
-                <div className="relative pl-4">
-                    <div className="absolute left-0 top-0 h-full border-l-2 border-primary"></div>
+                <div className="relative pl-6">
+                    <div className="absolute left-2.5 top-0 h-full border-l-2 border-primary"></div>
                     <ol className="list-inside">
                         {participant.completedSkillBadges.map((badge, index) => (
                             <li key={index} className="relative pl-8 py-2 rounded-md hover:bg-muted/50">
