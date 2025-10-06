@@ -1,5 +1,5 @@
 'use client';
-import { Search, Trophy } from 'lucide-react';
+import { Menu, Search, Trophy } from 'lucide-react';
 import {
   Card,
   CardContent,
@@ -14,6 +14,12 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -22,6 +28,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState, useRef } from 'react';
 import { ThemeToggle } from '@/components/theme-toggle';
+import { useTheme } from 'next-themes';
 
 function RankingBadge({ rank }: { rank: number }) {
   if (rank > 3) {
@@ -42,9 +49,38 @@ function RankingBadge({ rank }: { rank: number }) {
   );
 }
 
+function MobileNav() {
+  const { setTheme } = useTheme();
+  return (
+    <div className="md:hidden">
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="ghost" size="icon">
+            <Menu className="h-6 w-6" />
+            <span className="sr-only">Toggle menu</span>
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+          <DropdownMenuItem onClick={() => setTheme('light')}>
+            Light
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setTheme('dark')}>
+            Dark
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setTheme('system')}>
+            System
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
+  );
+}
+
 export default function Home() {
   const [participants, setParticipants] = useState<Participant[]>([]);
-  const [filteredParticipants, setFilteredParticipants] = useState<Participant[]>([]);
+  const [filteredParticipants, setFilteredParticipants] = useState<
+    Participant[]
+  >([]);
   const [eligibleCount, setEligibleCount] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
   const [suggestions, setSuggestions] = useState<Participant[]>([]);
@@ -64,13 +100,16 @@ export default function Home() {
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (searchContainerRef.current && !searchContainerRef.current.contains(event.target as Node)) {
+      if (
+        searchContainerRef.current &&
+        !searchContainerRef.current.contains(event.target as Node)
+      ) {
         setShowSuggestions(false);
       }
     }
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
@@ -83,7 +122,7 @@ export default function Home() {
       );
       setSuggestions(filtered);
       setShowSuggestions(true);
-      setFilteredParticipants(filtered); 
+      setFilteredParticipants(filtered);
     } else {
       setSuggestions([]);
       setShowSuggestions(false);
@@ -102,21 +141,35 @@ export default function Home() {
       <header className="bg-muted/40 p-4">
         <div className="container mx-auto flex items-center justify-between">
           <div className="flex-1"></div>
-          <div className="flex-1 flex items-center justify-center text-center">
-            <Image src="/assets/google-cloud.png" alt="Google Cloud Logo" width={24} height={24} className="mr-2" />
+          <div className="flex flex-1 items-center justify-center text-center">
+            <Image
+              src="/assets/google-cloud.png"
+              alt="Google Cloud Logo"
+              width={24}
+              height={24}
+              className="mr-2"
+            />
             <h1 className="text-md sm:text-xl font-semibold truncate">
               Google Cloud Study Jams 25 - 26
             </h1>
           </div>
           <div className="flex-1 flex justify-end">
-            <ThemeToggle />
+            <div className="hidden md:block">
+              <ThemeToggle />
+            </div>
+            <MobileNav />
           </div>
         </div>
       </header>
 
       <main className="container mx-auto px-4 py-8">
         <div className="flex items-center mb-8">
-          <Image src="/assets/logo.png" alt="GDG On Campus Logo" width={40} height={40} />
+          <Image
+            src="/assets/logo.png"
+            alt="GDG On Campus Logo"
+            width={40}
+            height={40}
+          />
           <div className="ml-4">
             <h2 className="text-xl font-bold">
               Google Developer Group On Campus
@@ -133,7 +186,9 @@ export default function Home() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-4xl font-bold text-green-600">{eligibleCount}</div>
+              <div className="text-4xl font-bold text-green-600">
+                {eligibleCount}
+              </div>
             </CardContent>
           </Card>
           <Card className="border-blue-400 border-2 shadow-lg">
@@ -150,7 +205,10 @@ export default function Home() {
           </Card>
         </div>
 
-        <div className="relative w-full max-w-lg mx-auto mb-8" ref={searchContainerRef}>
+        <div
+          className="relative w-full max-w-lg mx-auto mb-8"
+          ref={searchContainerRef}
+        >
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <Input
             placeholder="Search Your Name Here"
@@ -183,15 +241,21 @@ export default function Home() {
                 <TableRow className="bg-primary hover:bg-primary/90">
                   <TableHead className="text-primary-foreground">#</TableHead>
                   <TableHead className="text-primary-foreground">Name</TableHead>
-                  <TableHead className="text-primary-foreground">Redemption Status</TableHead>
-                  <TableHead className="text-primary-foreground">All Completed</TableHead>
+                  <TableHead className="text-primary-foreground">
+                    Redemption Status
+                  </TableHead>
+                  <TableHead className="text-primary-foreground">
+                    All Completed
+                  </TableHead>
                   <TableHead className="text-primary-foreground">
                     No of Skill Badges Completed
                   </TableHead>
                   <TableHead className="text-primary-foreground">
                     # of Arcade Games Completed
                   </TableHead>
-                  <TableHead className="text-primary-foreground">Actions</TableHead>
+                  <TableHead className="text-primary-foreground">
+                    Actions
+                  </TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -202,11 +266,19 @@ export default function Home() {
                     </TableCell>
                     <TableCell>{participant.name}</TableCell>
                     <TableCell>
-                      <Badge variant={participant.accessCodeRedemption === 'Redeemed' ? "success" : "destructive"}>
+                      <Badge
+                        variant={
+                          participant.accessCodeRedemption === 'Redeemed'
+                            ? 'success'
+                            : 'destructive'
+                        }
+                      >
                         {participant.accessCodeRedemption}
                       </Badge>
                     </TableCell>
-                    <TableCell>{participant.allCompleted ? 'Yes' : 'No !'}</TableCell>
+                    <TableCell>
+                      {participant.allCompleted ? 'Yes' : 'No !'}
+                    </TableCell>
                     <TableCell>{participant.skillBadges}</TableCell>
                     <TableCell>{participant.arcadeGames ?? '-'}</TableCell>
                     <TableCell>

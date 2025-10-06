@@ -1,13 +1,20 @@
 'use client';
 import { getParticipantById, type Participant } from '@/lib/participants';
-import { useEffect, useState } from 'react';
-import { ArrowLeft, CheckCircle2 } from 'lucide-react';
+import { useEffect, useState, use } from 'react';
+import { ArrowLeft, CheckCircle2, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ThemeToggle } from '@/components/theme-toggle';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { useTheme } from 'next-themes';
 
 function MedalIcon() {
   return (
@@ -54,6 +61,34 @@ function MedalIcon() {
   );
 }
 
+function MobileNav() {
+  const { setTheme } = useTheme();
+  return (
+    <div className="md:hidden">
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="ghost" size="icon">
+            <Menu className="h-6 w-6" />
+            <span className="sr-only">Toggle menu</span>
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+          <DropdownMenuItem onClick={() => setTheme('light')}>
+            Light
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setTheme('dark')}>
+            Dark
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setTheme('system')}>
+            System
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
+  );
+}
+
+
 export default function ParticipantProfile({
   params,
 }: {
@@ -86,26 +121,43 @@ export default function ParticipantProfile({
         <div className="container mx-auto flex items-center justify-between">
           <div className="flex-1"></div>
           <div className="flex-1 flex items-center justify-center text-center">
-            <Image src="/assets/google-cloud.png" alt="Google Cloud Logo" width={24} height={24} className="mr-2" />
+            <Image
+              src="/assets/google-cloud.png"
+              alt="Google Cloud Logo"
+              width={24}
+              height={24}
+              className="mr-2"
+            />
             <h1 className="text-md sm:text-xl font-semibold truncate">
               Google Cloud Study Jams 25 - 26
             </h1>
           </div>
           <div className="flex-1 flex justify-end">
-            <ThemeToggle />
+            <div className="hidden md:block">
+              <ThemeToggle />
+            </div>
+            <MobileNav />
           </div>
         </div>
       </header>
-      
+
       <div className="bg-card shadow-sm sticky top-0 z-10">
         <div className="container mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
           <div className="flex items-center text-center sm:text-left">
-            <Image src="/assets/logo.png" alt="GDG On Campus Logo" width={40} height={40} className="mr-2"/>
+            <Image
+              src="/assets/logo.png"
+              alt="GDG On Campus Logo"
+              width={40}
+              height={40}
+              className="mr-2"
+            />
             <div>
               <h2 className="text-lg font-bold">
                 Google Developer Group On Campus
               </h2>
-              <p className="text-muted-foreground text-sm">MCKV Institute of Engineering</p>
+              <p className="text-muted-foreground text-sm">
+                MCKV Institute of Engineering
+              </p>
             </div>
           </div>
           <Link href="/" className="w-full sm:w-auto">
@@ -130,25 +182,52 @@ export default function ParticipantProfile({
             </div>
             <div>
               <p className="text-sm text-muted-foreground">Profile URL</p>
-              <a href={participant.profileUrl} target="_blank" rel="noopener noreferrer" className="font-medium text-primary hover:underline break-words">
+              <a
+                href={participant.profileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-primary hover:underline break-words"
+              >
                 View Profile &rarr;
               </a>
             </div>
             <div>
               <p className="text-sm text-muted-foreground">Profile URL Status</p>
-              <Badge variant={participant.profileUrlStatus === 'All Good' ? 'success' : 'destructive'}>{participant.profileUrlStatus}</Badge>
+              <Badge
+                variant={
+                  participant.profileUrlStatus === 'All Good'
+                    ? 'success'
+                    : 'destructive'
+                }
+              >
+                {participant.profileUrlStatus}
+              </Badge>
             </div>
             <div>
-              <p className="text-sm text-muted-foreground">Access Code Redemption</p>
-              <Badge variant={participant.accessCodeRedemption === 'Redeemed' ? 'success' : 'destructive'}>{participant.accessCodeRedemption}</Badge>
+              <p className="text-sm text-muted-foreground">
+                Access Code Redemption
+              </p>
+              <Badge
+                variant={
+                  participant.accessCodeRedemption === 'Redeemed'
+                    ? 'success'
+                    : 'destructive'
+                }
+              >
+                {participant.accessCodeRedemption}
+              </Badge>
             </div>
             <div>
               <p className="text-sm text-muted-foreground">All Completed</p>
               <div className="flex items-center">
-                <Badge variant={participant.allCompleted ? 'success' : 'destructive'}>
+                <Badge
+                  variant={participant.allCompleted ? 'success' : 'destructive'}
+                >
                   {participant.allCompleted ? 'Yes' : 'No'}
                 </Badge>
-                {participant.allCompleted && <CheckCircle2 className="h-5 w-5 text-green-500 ml-2" />}
+                {participant.allCompleted && (
+                  <CheckCircle2 className="h-5 w-5 text-green-500 ml-2" />
+                )}
               </div>
             </div>
           </div>
@@ -178,21 +257,25 @@ export default function ParticipantProfile({
 
           {participant.completedSkillBadges.length > 0 && (
             <div className="mt-8">
-                <h2 className="text-xl font-bold mb-4 flex items-center">
-                    <MedalIcon /> 
-                    <span className="ml-2">Completed Skill Badges ({participant.completedSkillBadges.length})</span>
-                </h2>
-                <div className="relative pl-6 sm:pl-8">
-                    <div className="absolute left-3 top-0 h-full border-l-2 border-primary"></div>
-                    <ol className="list-inside space-y-2">
-                        {participant.completedSkillBadges.map((badge, index) => (
-                             <li key={index} className="relative flex items-start">
-                                <span className="absolute left-[-3rem] sm:left-[-3.5rem] top-1 text-primary font-bold w-12 text-center">{index + 1}.</span>
-                                <span className="ml-2">{badge}</span>
-                            </li>
-                        ))}
-                    </ol>
-                </div>
+              <h2 className="text-xl font-bold mb-4 flex items-center">
+                <MedalIcon />
+                <span className="ml-2">
+                  Completed Skill Badges ({participant.completedSkillBadges.length})
+                </span>
+              </h2>
+              <div className="relative">
+                <div className="absolute left-4 top-0 h-full w-0.5 bg-primary/20"></div>
+                <ol className="list-none space-y-4 pl-10">
+                  {participant.completedSkillBadges.map((badge, index) => (
+                    <li key={index} className="relative flex items-start">
+                       <span className="absolute -left-7 top-1/2 -translate-y-1/2 flex items-center justify-center h-6 w-6 rounded-full bg-primary text-primary-foreground font-bold text-sm">
+                        {index + 1}
+                      </span>
+                      <span className="ml-2 pt-1">{badge}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
             </div>
           )}
         </Card>
