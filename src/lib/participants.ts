@@ -10,6 +10,7 @@ export type Participant = {
   redemptionStatus: boolean;
   allCompleted: boolean;
   skillBadges: number;
+  completedSkillBadges: string[];
   arcadeGames: number | null;
 };
 
@@ -34,6 +35,8 @@ export async function getParticipants(): Promise<Participant[]> {
               return null;
             }
 
+            const completedBadges = row['Names of Completed Skill Badges'];
+
             return {
               id: `${name.replace(/\s+/g, '-').toLowerCase()}-${index}`,
               name: name,
@@ -44,6 +47,7 @@ export async function getParticipants(): Promise<Participant[]> {
               redemptionStatus: row['Access Code Redemption Status'] === 'Yes',
               allCompleted: row['All Skill Badges & Games Completed'] === 'Yes',
               skillBadges: Number(row['No of Skill Badges Completed'] || 0),
+              completedSkillBadges: completedBadges ? completedBadges.split('|').map((s: string) => s.trim()) : [],
               arcadeGames: row['# of Arcade Games Completed'] ? Number(row['# of Arcade Games Completed']) : null,
             };
           }).filter(p => p !== null) as Participant[];

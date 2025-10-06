@@ -189,7 +189,7 @@ export default function ParticipantProfile({
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
             <Card className="bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800 p-6 rounded-lg">
               <CardContent className="p-0">
                 <div className="text-4xl font-bold text-blue-600 dark:text-blue-400">
@@ -211,6 +211,26 @@ export default function ParticipantProfile({
               </CardContent>
             </Card>
           </div>
+
+          {participant.completedSkillBadges.length > 0 && (
+            <div className="mt-8">
+                <h2 className="text-xl font-bold mb-4 flex items-center">
+                    <MedalIcon /> 
+                    <span className="ml-2">Completed Skill Badges ({participant.completedSkillBadges.length})</span>
+                </h2>
+                <div className="relative">
+                    <div className="absolute left-4 h-full border-l-2 border-primary"></div>
+                    <ol className="ml-4 list-inside">
+                        {participant.completedSkillBadges.map((badge, index) => (
+                            <li key={index} className="relative pl-8 py-2 rounded-md hover:bg-muted/50">
+                                <span className="absolute left-0 top-2.5 h-4 w-4 text-primary font-bold">{index + 1}.</span>
+                                {badge}
+                            </li>
+                        ))}
+                    </ol>
+                </div>
+            </div>
+          )}
         </Card>
       </main>
     </div>
