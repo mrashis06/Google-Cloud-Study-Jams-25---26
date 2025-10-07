@@ -48,15 +48,20 @@ export async function getParticipants(): Promise<Participant[]> {
               accessCodeRedemption: row['Access Code Redemption Status'] === 'Yes' ? 'Redeemed' : 'Pending',
               redemptionStatus: row['Access Code Redemption Status'] === 'Yes',
               allCompleted: row['All Skill Badges & Games Completed'] === 'Yes',
-              skillBadges: Number(row['No of Skill Badges Completed'] || 0),
+              skillBadges: Number(row['# of Skill Badges Completed'] || 0),
               completedSkillBadges: completedBadges ? completedBadges.split('|').map((s: string) => s.trim()) : [],
               arcadeGames: row['# of Arcade Games Completed'] ? Number(row['# of Arcade Games Completed']) : null,
               completedArcadeGames: completedArcadeGames ? completedArcadeGames.split('|').map((s: string) => s.trim()) : [],
             };
           }).filter(p => p !== null) as Participant[];
           
-          // Sort by skill badges descending
-          participants.sort((a, b) => b.skillBadges - a.skillBadges);
+          // Sort by skill badges descending, then by arcade games descending
+          participants.sort((a, b) => {
+            if (b.skillBadges !== a.skillBadges) {
+              return b.skillBadges - a.skillBadges;
+            }
+            return (b.arcadeGames ?? 0) - (a.arcadeGames ?? 0);
+          });
 
           resolve(participants);
         },
