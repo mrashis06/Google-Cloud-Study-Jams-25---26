@@ -311,22 +311,28 @@ export default function ParticipantProfile({
           </Card>
         )}
 
-        {(participant.arcadeGames ?? 0) > 0 && (
+        {participant.completedArcadeGames.length > 0 && (
           <Card className="max-w-4xl mx-auto shadow-lg rounded-xl">
             <CardHeader>
               <CardTitle className="flex items-center">
                 <ArcadeIcon />
-                <span className="ml-2">Completed Arcade Games</span>
+                <span className="ml-2">
+                  Completed Arcade Games ({participant.completedArcadeGames.length})
+                </span>
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-lg">
-                The participant has completed{' '}
-                <span className="font-bold text-primary">
-                  {participant.arcadeGames}
-                </span>{' '}
-                Arcade Game(s).
-              </p>
+              <div className="space-y-4">
+                {participant.completedArcadeGames.map((game, index) => (
+                  <div
+                    key={index}
+                    className="relative flex items-center p-4 bg-muted/40 dark:bg-muted/20 rounded-lg border-l-4 border-green-500"
+                  >
+                    <span className="font-semibold text-green-500 mr-4">{index + 1}</span>
+                    <span>{game}</span>
+                  </div>
+                ))}
+              </div>
             </CardContent>
           </Card>
         )}

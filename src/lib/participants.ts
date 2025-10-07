@@ -12,6 +12,7 @@ export type Participant = {
   skillBadges: number;
   completedSkillBadges: string[];
   arcadeGames: number | null;
+  completedArcadeGames: string[];
 };
 
 const SPREADSHEET_URL = 'https://docs.google.com/spreadsheets/d/1UL2OK8oolWeehcs799ofOwxWciSJ5D0xyGuUxAhE1wI/gviz/tq?tqx=out:csv&gid=490025218';
@@ -36,6 +37,7 @@ export async function getParticipants(): Promise<Participant[]> {
             }
 
             const completedBadges = row['Names of Completed Skill Badges'];
+            const completedArcadeGames = row['Names of Completed Arcade Games'];
 
             return {
               id: `${name.replace(/\s+/g, '-').toLowerCase()}-${index}`,
@@ -49,6 +51,7 @@ export async function getParticipants(): Promise<Participant[]> {
               skillBadges: Number(row['No of Skill Badges Completed'] || 0),
               completedSkillBadges: completedBadges ? completedBadges.split('|').map((s: string) => s.trim()) : [],
               arcadeGames: row['# of Arcade Games Completed'] ? Number(row['# of Arcade Games Completed']) : null,
+              completedArcadeGames: completedArcadeGames ? completedArcadeGames.split('|').map((s: string) => s.trim()) : [],
             };
           }).filter(p => p !== null) as Participant[];
           
