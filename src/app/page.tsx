@@ -92,7 +92,7 @@ export default function Home() {
       const data = await getParticipants();
       setParticipants(data);
       setFilteredParticipants(data);
-      const eligible = data.filter(p => p.skillBadges >= 10).length;
+      const eligible = data.filter(p => p.allCompleted).length;
       setEligibleCount(eligible);
     }
     fetchData();
