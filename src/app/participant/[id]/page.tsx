@@ -273,18 +273,16 @@ export default function ParticipantProfile({
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="relative">
-                <div className="absolute left-4 top-0 h-full w-1 bg-border"></div>
-                <ol className="list-none space-y-6">
-                  {participant.completedSkillBadges.map((badge, index) => (
-                    <li key={index} className="relative flex items-center pl-12">
-                       <span className="absolute left-0 flex items-center justify-center h-8 w-8 rounded-md bg-primary/80 text-primary-foreground font-bold text-sm border border-primary/50 shadow-lg backdrop-blur-sm">
-                        {index + 1}
-                      </span>
-                      <span className="ml-4">{badge}</span>
-                    </li>
-                  ))}
-                </ol>
+              <div className="space-y-4">
+                {participant.completedSkillBadges.map((badge, index) => (
+                  <div
+                    key={index}
+                    className="relative flex items-center p-4 bg-muted/40 dark:bg-muted/20 rounded-lg border-l-4 border-primary"
+                  >
+                    <span className="font-semibold text-primary mr-4">{index + 1}</span>
+                    <span>{badge}</span>
+                  </div>
+                ))}
               </div>
             </CardContent>
           </Card>
