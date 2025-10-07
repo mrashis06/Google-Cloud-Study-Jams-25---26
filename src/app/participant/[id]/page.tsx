@@ -61,6 +61,29 @@ function MedalIcon() {
   );
 }
 
+function ArcadeIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="inline-block ml-2"
+    >
+      <path d="M10 17.5v-15" />
+      <path d="M6 9.5L10 6.5" />
+      <path d="M10 6.5l4 3" />
+      <circle cx="12" cy="19.5" r="2" />
+      <path d="M18 11.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />
+    </svg>
+  );
+}
+
 function MobileNav() {
   const { setTheme } = useTheme();
   return (
@@ -284,6 +307,26 @@ export default function ParticipantProfile({
                   </div>
                 ))}
               </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {(participant.arcadeGames ?? 0) > 0 && (
+          <Card className="max-w-4xl mx-auto shadow-lg rounded-xl">
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <ArcadeIcon />
+                <span className="ml-2">Completed Arcade Games</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-lg">
+                The participant has completed{' '}
+                <span className="font-bold text-primary">
+                  {participant.arcadeGames}
+                </span>{' '}
+                Arcade Game(s).
+              </p>
             </CardContent>
           </Card>
         )}
