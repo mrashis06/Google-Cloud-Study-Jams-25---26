@@ -294,7 +294,7 @@ export default function ParticipantProfile({
               <CardTitle className="flex items-center">
                 <Gamepad2 className="text-green-500" />
                 <span className="ml-2">
-                  Completed Arcade Games ({participant.completedArcadeGames.length})
+                  Completed Arcade Games
                 </span>
               </CardTitle>
             </CardHeader>
@@ -317,5 +317,3 @@ export default function ParticipantProfile({
     </div>
   );
 }
-
-    
