@@ -15,7 +15,7 @@ export type Participant = {
   completedArcadeGames: string[];
 };
 
-const SPREADSHEET_URL = 'https://docs.google.com/spreadsheets/d/1UL2OK8oolWeehcs799ofOwxWciSJ5D0xyGuUxAhE1wI/gviz/tq?tqx=out:csv&gid=490025218';
+const SPREADSHEET_URL = 'https://docs.google.com/spreadsheets/d/1tXYWnuhTObWAoFmqeCenPIb5pe7hS5P9Q_NiqxlReR0/gviz/tq?tqx=out:csv&gid=0';
 
 export async function getParticipants(): Promise<Participant[]> {
   try {
