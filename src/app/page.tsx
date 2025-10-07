@@ -136,6 +136,10 @@ export default function Home() {
     setShowSuggestions(false);
   };
 
+  const getRank = (participantId: string) => {
+    return participants.findIndex(p => p.id === participantId) + 1;
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="bg-muted/40 p-4">
@@ -227,7 +231,10 @@ export default function Home() {
                     className="px-4 py-2 cursor-pointer hover:bg-muted"
                     onClick={() => handleSuggestionClick(suggestion)}
                   >
-                    {suggestion.name}
+                    <div className="flex items-center justify-between">
+                      <span>{suggestion.name}</span>
+                      <RankingBadge rank={getRank(suggestion.id)} />
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -263,7 +270,7 @@ export default function Home() {
                 {filteredParticipants.map((participant, index) => (
                   <TableRow key={participant.id}>
                     <TableCell>
-                      <RankingBadge rank={index + 1} />
+                      <RankingBadge rank={getRank(participant.id)} />
                     </TableCell>
                     <TableCell>{participant.name}</TableCell>
                     <TableCell>
