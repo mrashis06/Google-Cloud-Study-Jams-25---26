@@ -1,7 +1,7 @@
 'use client';
 import { getParticipantById, type Participant } from '@/lib/participants';
 import { useEffect, useState } from 'react';
-import { ArrowLeft, CheckCircle2, Menu } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, Menu, Gamepad2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -57,29 +57,6 @@ function MedalIcon() {
         strokeWidth="2"
         strokeLinecap="round"
       />
-    </svg>
-  );
-}
-
-function ArcadeIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="inline-block ml-2"
-    >
-      <path d="M10 17.5v-15" />
-      <path d="M6 9.5L10 6.5" />
-      <path d="M10 6.5l4 3" />
-      <circle cx="12" cy="19.5" r="2" />
-      <path d="M18 11.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />
     </svg>
   );
 }
@@ -165,9 +142,9 @@ export default function ParticipantProfile({
         </div>
       </header>
 
-      <div className="sticky top-0 z-10 bg-background/80 backdrop-blur-sm py-4">
+      <div className="sticky top-0 z-10 bg-background/80 backdrop-blur-sm">
         <div className="container mx-auto px-4">
-          <Card className="max-w-4xl mx-auto p-4 shadow-lg">
+          <Card className="max-w-4xl mx-auto p-4 shadow-lg my-4">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
               <div className="flex items-center text-center sm:text-left">
                 <Image
@@ -197,7 +174,7 @@ export default function ParticipantProfile({
       </div>
 
 
-      <main className="container mx-auto px-4 py-8 space-y-8">
+      <main className="container mx-auto px-4 pb-8 space-y-8">
         <Card className="max-w-4xl mx-auto p-4 sm:p-8 shadow-lg rounded-xl">
           <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-center sm:text-left">
             {participant.name}
@@ -315,7 +292,7 @@ export default function ParticipantProfile({
           <Card className="max-w-4xl mx-auto shadow-lg rounded-xl">
             <CardHeader>
               <CardTitle className="flex items-center">
-                <ArcadeIcon />
+                <Gamepad2 className="text-green-500" />
                 <span className="ml-2">
                   Completed Arcade Games ({participant.completedArcadeGames.length})
                 </span>
@@ -340,3 +317,5 @@ export default function ParticipantProfile({
     </div>
   );
 }
+
+    
