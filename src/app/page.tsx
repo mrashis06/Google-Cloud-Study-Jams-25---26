@@ -138,7 +138,15 @@ export default function Home() {
   };
 
   const getRank = (participantId: string) => {
-    return participants.findIndex(p => p.id === participantId) + 1;
+    const sortedParticipants = [...participants].sort((a, b) => {
+      const scoreA = a.skillBadges + (a.arcadeGames ?? 0);
+      const scoreB = b.skillBadges + (b.arcadeGames ?? 0);
+      if (scoreB !== scoreA) {
+        return scoreB - scoreA;
+      }
+      return 0; // Keep original order if scores are same, can be enhanced
+    });
+    return sortedParticipants.findIndex(p => p.id === participantId) + 1;
   };
   
   const getRowClassName = (participant: Participant) => {
@@ -277,7 +285,7 @@ export default function Home() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {filteredParticipants.map((participant, index) => (
+                {filteredParticipants.map((participant) => (
                   <TableRow key={participant.id} className={getRowClassName(participant)}>
                     <TableCell>
                       <RankingBadge rank={getRank(participant.id)} />

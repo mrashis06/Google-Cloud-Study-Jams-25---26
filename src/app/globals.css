@@ -76,23 +76,23 @@
 
 @layer utilities {
   .bg-rank-gold {
-    background: linear-gradient(to right, hsl(48, 100%, 95%), hsl(50, 100%, 85%));
+    background: linear-gradient(90deg, hsl(45, 100%, 90%), hsl(50, 100%, 80%));
   }
   .bg-rank-silver {
-    background: linear-gradient(to right, hsl(220, 15%, 95%), hsl(220, 20%, 88%));
+    background: linear-gradient(90deg, hsl(210, 20%, 94%), hsl(210, 20%, 88%));
   }
   .bg-rank-bronze {
-    background: linear-gradient(to right, hsl(30, 40%, 92%), hsl(30, 50%, 85%));
+    background: linear-gradient(90deg, hsl(28, 60%, 88%), hsl(30, 55%, 82%));
   }
 
   .dark .bg-rank-gold {
-    background: linear-gradient(to right, hsl(48, 90%, 15%), hsl(50, 95%, 25%));
+    background: linear-gradient(90deg, hsl(48, 80%, 20%), hsl(50, 85%, 30%));
   }
   .dark .bg-rank-silver {
-    background: linear-gradient(to right, hsl(220, 10%, 20%), hsl(220, 15%, 28%));
+    background: linear-gradient(90deg, hsl(210, 10%, 23%), hsl(210, 12%, 30%));
   }
   .dark .bg-rank-bronze {
-    background: linear-gradient(to right, hsl(30, 50%, 20%), hsl(30, 45%, 28%));
+    background: linear-gradient(90deg, hsl(30, 50%, 22%), hsl(30, 45%, 30%));
   }
 
   .bg-rank-gold:hover,
