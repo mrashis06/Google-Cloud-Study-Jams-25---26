@@ -1,5 +1,5 @@
 'use client';
-import { Menu, Search, Trophy } from 'lucide-react';
+import { Menu, Search } from 'lucide-react';
 import {
   Card,
   CardContent,
@@ -31,22 +31,7 @@ import { ThemeToggle } from '@/components/theme-toggle';
 import { useTheme } from 'next-themes';
 
 function RankingBadge({ rank }: { rank: number }) {
-  if (rank > 3) {
-    return <span className="font-medium">{rank}</span>;
-  }
-
-  const colors = {
-    1: 'text-yellow-500',
-    2: 'text-gray-400',
-    3: 'text-yellow-700',
-  };
-
-  return (
-    <div className="flex items-center gap-2">
-      <Trophy className={`w-5 h-5 ${colors[rank as keyof typeof colors]}`} />
-      <span className="font-bold">{rank}</span>
-    </div>
-  );
+  return <span className="font-medium">{rank}</span>;
 }
 
 function MobileNav() {
