@@ -143,9 +143,9 @@ export default function Home() {
   
   const getRowClassName = (participant: Participant) => {
     const score = participant.skillBadges + (participant.arcadeGames ?? 0);
-    if (score >= rankedScores.gold && rankedScores.gold !== -1) return 'bg-gold-tint';
-    if (score >= rankedScores.silver && rankedScores.silver !== -1) return 'bg-silver-tint';
-    if (score >= rankedScores.bronze && rankedScores.bronze !== -1) return 'bg-bronze-tint';
+    if (score >= rankedScores.gold && rankedScores.gold !== -1) return 'bg-rank-gold';
+    if (score >= rankedScores.silver && rankedScores.silver !== -1) return 'bg-rank-silver';
+    if (score >= rankedScores.bronze && rankedScores.bronze !== -1) return 'bg-rank-bronze';
     return '';
   };
 

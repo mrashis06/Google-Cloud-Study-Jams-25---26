@@ -37,9 +37,6 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
-    --gold-tint: 51 100% 80%;
-    --silver-tint: 220 13% 85%;
-    --bronze-tint: 30 50% 75%;
   }
   .dark {
     --background: 222.2 84% 4.9%;
@@ -74,21 +71,34 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
-    --gold-tint: 51 100% 20%;
-    --silver-tint: 220 13% 25%;
-    --bronze-tint: 30 50% 20%;
   }
 }
 
 @layer utilities {
-  .bg-gold-tint {
-    background-color: hsl(var(--gold-tint));
+  .bg-rank-gold {
+    background: linear-gradient(to right, hsl(48, 100%, 95%), hsl(50, 100%, 85%));
   }
-  .bg-silver-tint {
-    background-color: hsl(var(--silver-tint));
+  .bg-rank-silver {
+    background: linear-gradient(to right, hsl(220, 15%, 95%), hsl(220, 20%, 88%));
   }
-  .bg-bronze-tint {
-    background-color: hsl(var(--bronze-tint));
+  .bg-rank-bronze {
+    background: linear-gradient(to right, hsl(30, 40%, 92%), hsl(30, 50%, 85%));
+  }
+
+  .dark .bg-rank-gold {
+    background: linear-gradient(to right, hsl(48, 90%, 15%), hsl(50, 95%, 25%));
+  }
+  .dark .bg-rank-silver {
+    background: linear-gradient(to right, hsl(220, 10%, 20%), hsl(220, 15%, 28%));
+  }
+  .dark .bg-rank-bronze {
+    background: linear-gradient(to right, hsl(30, 50%, 20%), hsl(30, 45%, 28%));
+  }
+
+  .bg-rank-gold:hover,
+  .bg-rank-silver:hover,
+  .bg-rank-bronze:hover {
+    filter: brightness(0.95);
   }
 }
 
