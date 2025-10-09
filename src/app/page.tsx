@@ -26,7 +26,7 @@ import { Input } from '@/components/ui/input';
 import { getParticipants, type Participant } from '@/lib/participants';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useMemo } from 'react';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { useTheme } from 'next-themes';
 
@@ -98,6 +98,22 @@ export default function Home() {
     fetchData();
   }, []);
 
+  const rankedScores = useMemo(() => {
+    if (participants.length === 0) return { gold: -1, silver: -1, bronze: -1 };
+
+    const scores = participants.map(
+      p => p.skillBadges + (p.arcadeGames ?? 0)
+    );
+    const uniqueScores = [...new Set(scores)].sort((a, b) => b - a);
+    
+    return {
+      gold: uniqueScores[0] ?? -1,
+      silver: uniqueScores[1] ?? -1,
+      bronze: uniqueScores[2] ?? -1,
+    };
+  }, [participants]);
+
+
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -139,6 +155,15 @@ export default function Home() {
   const getRank = (participantId: string) => {
     return participants.findIndex(p => p.id === participantId) + 1;
   };
+  
+  const getRowClassName = (participant: Participant) => {
+    const score = participant.skillBadges + (participant.arcadeGames ?? 0);
+    if (score >= rankedScores.gold && rankedScores.gold !== -1) return 'bg-gold-tint';
+    if (score >= rankedScores.silver && rankedScores.silver !== -1) return 'bg-silver-tint';
+    if (score >= rankedScores.bronze && rankedScores.bronze !== -1) return 'bg-bronze-tint';
+    return '';
+  };
+
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -268,7 +293,7 @@ export default function Home() {
               </TableHeader>
               <TableBody>
                 {filteredParticipants.map((participant, index) => (
-                  <TableRow key={participant.id}>
+                  <TableRow key={participant.id} className={getRowClassName(participant)}>
                     <TableCell>
                       <RankingBadge rank={getRank(participant.id)} />
                     </TableCell>
