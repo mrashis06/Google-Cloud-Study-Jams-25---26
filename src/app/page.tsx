@@ -194,9 +194,17 @@ export default function Home() {
             height={40}
           />
           <div className="ml-4">
-            <h2 className="text-xl font-bold">
-              Google Developer Group On Campus
-            </h2>
+            <div className="flex items-center gap-2">
+              <h2 className="text-xl font-bold">
+                Google Developer Group On Campus
+              </h2>
+              <Image
+                src="/assets/mckv-logo.png"
+                alt="MCKV Logo"
+                width={40}
+                height={40}
+              />
+            </div>
             <p className="text-muted-foreground">MCKV Institute of Engineering</p>
           </div>
         </div>

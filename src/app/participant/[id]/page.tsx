@@ -155,9 +155,17 @@ export default function ParticipantProfile({
                   className="mr-2"
                 />
                 <div>
-                  <h2 className="text-lg font-bold">
-                    Google Developer Group On Campus
-                  </h2>
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-lg font-bold">
+                      Google Developer Group On Campus
+                    </h2>
+                    <Image
+                      src="/assets/mckv-logo.png"
+                      alt="MCKV Logo"
+                      width={40}
+                      height={40}
+                    />
+                  </div>
                   <p className="text-muted-foreground text-sm">
                     MCKV Institute of Engineering
                   </p>
