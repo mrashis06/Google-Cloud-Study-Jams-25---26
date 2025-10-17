@@ -160,7 +160,7 @@ export default function ParticipantProfile({
                       Google Developer Group On Campus
                     </h2>
                     <Image
-                      src="/assets/mckv-logo.png"
+                      src="/assets/MCKVIE.png"
                       alt="MCKV Logo"
                       width={40}
                       height={40}
