@@ -186,36 +186,38 @@ export default function Home() {
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center">
-            <Image
-              src="/assets/logo.png"
-              alt="GDG On Campus Logo"
-              width={40}
-              height={40}
-            />
-            <div className="ml-4">
-              <h2 className="text-xl font-bold">
-                Google Developer Group On Campus
-              </h2>
-              <p className="text-muted-foreground">
-                MCKV Institute of Engineering
-              </p>
+        <Card className="p-6 mb-8 shadow-lg bg-card/80 backdrop-blur-sm">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <Image
+                src="/assets/logo.png"
+                alt="GDG On Campus Logo"
+                width={40}
+                height={40}
+              />
+              <div className="ml-4">
+                <h2 className="text-xl font-bold">
+                  Google Developer Group On Campus
+                </h2>
+                <p className="text-muted-foreground">
+                  MCKV Institute of Engineering
+                </p>
+              </div>
             </div>
+            <Link
+              href="https://www.mckvie.edu.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src="/assets/MCKVIE.png"
+                alt="MCKV Logo"
+                width={80}
+                height={80}
+              />
+            </Link>
           </div>
-          <Link
-            href="https://www.mckvie.edu.in/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              src="/assets/MCKVIE.png"
-              alt="MCKV Logo"
-              width={80}
-              height={80}
-            />
-          </Link>
-        </div>
+        </Card>
 
         <Card className="mb-8 shadow-lg bg-card/80 backdrop-blur-sm">
           <div className="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-border">
