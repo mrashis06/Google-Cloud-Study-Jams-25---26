@@ -186,37 +186,22 @@ export default function Home() {
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        <Card className="p-6 mb-8 shadow-lg bg-card/80 backdrop-blur-sm">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
+        <Card className="p-6 mb-8 shadow-lg bg-card/80 backdrop-blur-sm text-center">
+            <div className="flex justify-center mb-4">
               <Image
                 src="/assets/logo.png"
-                alt="GDG On Campus Logo"
-                width={60}
-                height={60}
+                alt="Google Developer Groups Logo"
+                width={120}
+                height={120}
               />
-              <div className="ml-4">
-                <h2 className="text-xl font-bold">
-                  Google Developer Group On Campus
-                </h2>
-                <p className="text-muted-foreground">
-                  MCKV Institute of Engineering
-                </p>
-              </div>
             </div>
-            <Link
-              href="https://www.mckvie.edu.in/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src="/assets/MCKVIE.png"
-                alt="MCKV Logo"
-                width={100}
-                height={100}
-              />
-            </Link>
-          </div>
+            <h2 className="text-3xl font-bold">Google Developer Groups</h2>
+            <div className="flex justify-center items-center gap-4 mt-2">
+              <span className="text-primary font-semibold">On campus</span>
+              <span className="text-muted-foreground">
+                MCKV Institute of Engineering
+              </span>
+            </div>
         </Card>
 
         <Card className="mb-8 shadow-lg bg-card/80 backdrop-blur-sm">

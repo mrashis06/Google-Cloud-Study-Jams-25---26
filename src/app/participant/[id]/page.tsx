@@ -64,7 +64,7 @@ function MedalIcon() {
 function MobileNav() {
   const { setTheme } = useTheme();
   return (
-    <div className="md:hidden">
+    <div className="md-hidden">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" size="icon">
@@ -146,23 +146,23 @@ export default function ParticipantProfile({
         <div className="container mx-auto px-4">
           <Card className="max-w-4xl mx-auto p-4 shadow-lg my-4">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-              <div className="flex items-center text-center sm:text-left flex-1">
-                <Image
-                  src="/assets/logo.png"
-                  alt="GDG On Campus Logo"
-                  width={60}
-                  height={60}
-                  className="mr-2"
-                />
-                <div>
-                  <h2 className="text-lg font-bold">
-                    Google Developer Group On Campus
-                  </h2>
-                  <p className="text-muted-foreground text-sm">
-                    MCKV Institute of Engineering
-                  </p>
+               <div className="flex items-center text-center sm:text-left flex-1">
+                 <Image
+                    src="/assets/logo.png"
+                    alt="GDG On Campus Logo"
+                    width={60}
+                    height={60}
+                    className="mr-2"
+                  />
+                  <div>
+                    <h2 className="text-lg font-bold">
+                      Google Developer Group On Campus
+                    </h2>
+                    <p className="text-muted-foreground text-sm">
+                      MCKV Institute of Engineering
+                    </p>
+                  </div>
                 </div>
-              </div>
               <Link
                 href="https://www.mckvie.edu.in/"
                 target="_blank"
