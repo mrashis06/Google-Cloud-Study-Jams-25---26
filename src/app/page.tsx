@@ -187,18 +187,17 @@ export default function Home() {
 
       <main className="container mx-auto px-4 py-8">
         <Card className="p-4 mb-8 shadow-lg bg-card/80 backdrop-blur-sm">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex flex-col md:flex-row items-center text-center md:text-left gap-4">
               <Image
                 src="/assets/logo.png"
                 alt="Google Developer Groups Logo"
                 width={60}
                 height={60}
-                className="mr-4"
               />
               <div>
                 <h2 className="text-lg font-bold text-foreground">Google Developer Groups</h2>
-                <div className="flex items-center gap-2 mt-1">
+                <div className="flex items-center justify-center md:justify-start gap-2 mt-1">
                   <span className="text-primary font-semibold text-sm">On campus</span>
                   <span className="text-muted-foreground text-sm">
                     MCKV Institute of Engineering
@@ -206,18 +205,20 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <Link
-              href="https://www.mckvie.edu.in/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src="/assets/MCKVIE.png"
-                alt="MCKV Logo"
-                width={120}
-                height={120}
-              />
-            </Link>
+            <div className="mt-4 md:mt-0">
+              <Link
+                href="https://www.mckvie.edu.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src="/assets/MCKVIE.png"
+                  alt="MCKV Logo"
+                  width={120}
+                  height={120}
+                />
+              </Link>
+            </div>
           </div>
         </Card>
 
