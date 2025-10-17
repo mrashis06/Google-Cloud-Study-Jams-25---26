@@ -145,7 +145,7 @@ export default function ParticipantProfile({
       <div className="sticky top-0 z-10 bg-background/80 backdrop-blur-sm">
         <div className="container mx-auto px-4">
           <Card className="max-w-4xl mx-auto p-4 shadow-lg my-4">
-            <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-2">
                <div className="flex items-center text-center sm:text-left flex-1">
                  <Image
                     src="/assets/logo.png"
