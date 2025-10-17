@@ -1,5 +1,5 @@
 'use client';
-import { Menu, Search } from 'lucide-react';
+import { Menu, Search, Users, Award } from 'lucide-react';
 import {
   Card,
   CardContent,
@@ -217,32 +217,32 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 mb-8">
-          <Card className="border-green-400 border-2 shadow-lg">
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-green-600">
-                No of Eligible Participants for swags
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-4xl font-bold text-green-600">
-                {eligibleCount}
+        <Card className="mb-8 shadow-lg bg-card/80 backdrop-blur-sm">
+          <div className="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-border">
+            <div className="flex items-center gap-4 p-6">
+              <div className="p-3 rounded-full bg-green-100 dark:bg-green-900/50">
+                <Award className="h-8 w-8 text-green-500 dark:text-green-400" />
               </div>
-            </CardContent>
-          </Card>
-          <Card className="border-blue-400 border-2 shadow-lg">
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-blue-600">
-                Total No of Participants
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-4xl font-bold text-blue-600">
-                {participants.length}
+              <div>
+                <p className="text-sm font-medium text-muted-foreground">
+                  Eligible for Swags
+                </p>
+                <p className="text-3xl font-bold">{eligibleCount}</p>
               </div>
-            </CardContent>
-          </Card>
-        </div>
+            </div>
+            <div className="flex items-center gap-4 p-6">
+              <div className="p-3 rounded-full bg-blue-100 dark:bg-blue-900/50">
+                <Users className="h-8 w-8 text-blue-500 dark:text-blue-400" />
+              </div>
+              <div>
+                <p className="text-sm font-medium text-muted-foreground">
+                  Total Participants
+                </p>
+                <p className="text-3xl font-bold">{participants.length}</p>
+              </div>
+            </div>
+          </div>
+        </Card>
 
         <div
           className="relative w-full max-w-lg mx-auto mb-8"
