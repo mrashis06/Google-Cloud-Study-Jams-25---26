@@ -152,7 +152,7 @@ export default function ParticipantProfile({
                     alt="GDG On Campus Logo"
                     width={60}
                     height={60}
-                    className="mr-2"
+                    className="mr-4"
                   />
                   <div>
                     <h2 className="text-lg font-bold">

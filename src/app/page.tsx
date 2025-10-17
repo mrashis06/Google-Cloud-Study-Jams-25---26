@@ -186,22 +186,25 @@ export default function Home() {
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        <Card className="p-6 mb-8 shadow-lg bg-card/80 backdrop-blur-sm text-center">
-            <div className="flex justify-center mb-4">
-              <Image
-                src="/assets/logo.png"
-                alt="Google Developer Groups Logo"
-                width={120}
-                height={120}
-              />
+        <Card className="p-4 mb-8 shadow-lg bg-card/80 backdrop-blur-sm">
+          <div className="flex items-center">
+            <Image
+              src="/assets/logo.png"
+              alt="Google Developer Groups Logo"
+              width={80}
+              height={80}
+              className="mr-4"
+            />
+            <div>
+              <h2 className="text-xl font-bold">Google Developer Groups</h2>
+              <div className="flex items-center gap-2 mt-1">
+                <span className="text-primary font-semibold text-sm">On campus</span>
+                <span className="text-muted-foreground text-sm">
+                  MCKV Institute of Engineering
+                </span>
+              </div>
             </div>
-            <h2 className="text-3xl font-bold">Google Developer Groups</h2>
-            <div className="flex justify-center items-center gap-4 mt-2">
-              <span className="text-primary font-semibold">On campus</span>
-              <span className="text-muted-foreground">
-                MCKV Institute of Engineering
-              </span>
-            </div>
+          </div>
         </Card>
 
         <Card className="mb-8 shadow-lg bg-card/80 backdrop-blur-sm">
