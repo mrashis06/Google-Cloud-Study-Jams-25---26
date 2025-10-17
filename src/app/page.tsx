@@ -187,23 +187,38 @@ export default function Home() {
 
       <main className="container mx-auto px-4 py-8">
         <Card className="p-4 mb-8 shadow-lg bg-card/80 backdrop-blur-sm">
-          <div className="flex items-center">
-            <Image
-              src="/assets/logo.png"
-              alt="Google Developer Groups Logo"
-              width={80}
-              height={80}
-              className="mr-4"
-            />
-            <div>
-              <h2 className="text-xl font-bold">Google Developer Groups</h2>
-              <div className="flex items-center gap-2 mt-1">
-                <span className="text-primary font-semibold text-sm">On campus</span>
-                <span className="text-muted-foreground text-sm">
-                  MCKV Institute of Engineering
-                </span>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <Image
+                src="/assets/logo.png"
+                alt="Google Developer Groups Logo"
+                width={60}
+                height={60}
+                className="mr-4"
+              />
+              <div>
+                <h2 className="text-lg font-bold text-foreground">Google Developer Groups</h2>
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="text-primary font-semibold text-sm">On campus</span>
+                  <span className="text-muted-foreground text-sm">
+                    MCKV Institute of Engineering
+                  </span>
+                </div>
               </div>
             </div>
+            <Link
+              href="https://www.mckvie.edu.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src="/assets/MCKVIE.png"
+                alt="MCKV Logo"
+                width={100}
+                height={100}
+                className="hidden sm:block"
+              />
+            </Link>
           </div>
         </Card>
 

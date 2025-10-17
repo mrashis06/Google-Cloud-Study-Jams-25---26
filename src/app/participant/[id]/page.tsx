@@ -155,7 +155,7 @@ export default function ParticipantProfile({
                     className="mr-4"
                   />
                   <div>
-                    <h2 className="text-lg font-bold">
+                    <h2 className="text-lg font-bold text-foreground">
                       Google Developer Group On Campus
                     </h2>
                     <p className="text-muted-foreground text-sm">
@@ -163,24 +163,26 @@ export default function ParticipantProfile({
                     </p>
                   </div>
                 </div>
-              <Link
-                href="https://www.mckvie.edu.in/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image
-                  src="/assets/MCKVIE.png"
-                  alt="MCKV Logo"
-                  width={100}
-                  height={100}
-                  className="hidden sm:block"
-                />
-              </Link>
-              <Link href="/" className="w-full sm:w-auto">
-                <Button className="w-full">
-                  <ArrowLeft className="mr-2 h-4 w-4" /> Back to Leaderboard
-                </Button>
-              </Link>
+              <div className="flex items-center gap-4">
+                  <Link
+                    href="https://www.mckvie.edu.in/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Image
+                      src="/assets/MCKVIE.png"
+                      alt="MCKV Logo"
+                      width={100}
+                      height={100}
+                      className="hidden sm:block"
+                    />
+                  </Link>
+                  <Link href="/" className="w-full sm:w-auto">
+                    <Button className="w-full">
+                      <ArrowLeft className="mr-2 h-4 w-4" /> Back to Leaderboard
+                    </Button>
+                  </Link>
+              </div>
             </div>
           </Card>
         </div>
