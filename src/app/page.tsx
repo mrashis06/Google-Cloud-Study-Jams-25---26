@@ -216,7 +216,6 @@ export default function Home() {
                 alt="MCKV Logo"
                 width={120}
                 height={120}
-                className="hidden sm:block"
               />
             </Link>
           </div>

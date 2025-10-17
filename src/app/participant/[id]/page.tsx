@@ -174,7 +174,6 @@ export default function ParticipantProfile({
                       alt="MCKV Logo"
                       width={120}
                       height={120}
-                      className="hidden sm:block"
                     />
                   </Link>
                   <Link href="/" className="w-full sm:w-auto">
