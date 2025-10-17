@@ -150,8 +150,8 @@ export default function ParticipantProfile({
                 <Image
                   src="/assets/logo.png"
                   alt="GDG On Campus Logo"
-                  width={40}
-                  height={40}
+                  width={60}
+                  height={60}
                   className="mr-2"
                 />
                 <div>
@@ -330,5 +330,3 @@ export default function ParticipantProfile({
     </div>
   );
 }
-
-    

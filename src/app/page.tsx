@@ -192,8 +192,8 @@ export default function Home() {
               <Image
                 src="/assets/logo.png"
                 alt="GDG On Campus Logo"
-                width={40}
-                height={40}
+                width={60}
+                height={60}
               />
               <div className="ml-4">
                 <h2 className="text-xl font-bold">
@@ -340,5 +340,3 @@ export default function Home() {
     </div>
   );
 }
-
-    
