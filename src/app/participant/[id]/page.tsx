@@ -163,13 +163,19 @@ export default function ParticipantProfile({
                   </p>
                 </div>
               </div>
-              <Image
-                src="/assets/MCKVIE.png"
-                alt="MCKV Logo"
-                width={60}
-                height={60}
-                className="hidden sm:block"
-              />
+              <Link
+                href="https://www.mckvie.edu.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src="/assets/MCKVIE.png"
+                  alt="MCKV Logo"
+                  width={60}
+                  height={60}
+                  className="hidden sm:block"
+                />
+              </Link>
               <Link href="/" className="w-full sm:w-auto">
                 <Button className="w-full">
                   <ArrowLeft className="mr-2 h-4 w-4" /> Back to Leaderboard

@@ -203,12 +203,18 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <Image
-            src="/assets/MCKVIE.png"
-            alt="MCKV Logo"
-            width={60}
-            height={60}
-          />
+          <Link
+            href="https://www.mckvie.edu.in/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              src="/assets/MCKVIE.png"
+              alt="MCKV Logo"
+              width={60}
+              height={60}
+            />
+          </Link>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 mb-8">
