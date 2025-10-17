@@ -172,8 +172,8 @@ export default function ParticipantProfile({
                     <Image
                       src="/assets/MCKVIE.png"
                       alt="MCKV Logo"
-                      width={120}
-                      height={120}
+                      width={140}
+                      height={140}
                     />
                   </Link>
                   <Link href="/" className="w-full sm:w-auto">

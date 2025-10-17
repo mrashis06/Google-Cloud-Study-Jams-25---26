@@ -187,7 +187,7 @@ export default function Home() {
 
       <main className="container mx-auto px-4 py-8">
         <Card className="p-4 mb-8 shadow-lg bg-card/80 backdrop-blur-sm">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-2">
             <div className="flex flex-col md:flex-row items-center text-center md:text-left gap-2">
               <Image
                 src="/assets/logo.png"
@@ -214,8 +214,8 @@ export default function Home() {
                 <Image
                   src="/assets/MCKVIE.png"
                   alt="MCKV Logo"
-                  width={120}
-                  height={120}
+                  width={140}
+                  height={140}
                 />
               </Link>
             </div>
