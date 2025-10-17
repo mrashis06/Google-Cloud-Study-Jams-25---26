@@ -171,8 +171,8 @@ export default function ParticipantProfile({
                 <Image
                   src="/assets/MCKVIE.png"
                   alt="MCKV Logo"
-                  width={80}
-                  height={80}
+                  width={100}
+                  height={100}
                   className="hidden sm:block"
                 />
               </Link>
@@ -330,3 +330,5 @@ export default function ParticipantProfile({
     </div>
   );
 }
+
+    

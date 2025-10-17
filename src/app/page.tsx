@@ -212,8 +212,8 @@ export default function Home() {
               <Image
                 src="/assets/MCKVIE.png"
                 alt="MCKV Logo"
-                width={80}
-                height={80}
+                width={100}
+                height={100}
               />
             </Link>
           </div>
@@ -340,3 +340,5 @@ export default function Home() {
     </div>
   );
 }
+
+    
