@@ -186,27 +186,29 @@ export default function Home() {
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        <div className="flex items-center mb-8">
-          <Image
-            src="/assets/logo.png"
-            alt="GDG On Campus Logo"
-            width={40}
-            height={40}
-          />
-          <div className="ml-4">
-            <div className="flex items-center gap-2">
+        <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center">
+            <Image
+              src="/assets/logo.png"
+              alt="GDG On Campus Logo"
+              width={40}
+              height={40}
+            />
+            <div className="ml-4">
               <h2 className="text-xl font-bold">
                 Google Developer Group On Campus
               </h2>
-              <Image
-                src="/assets/MCKVIE.png"
-                alt="MCKV Logo"
-                width={40}
-                height={40}
-              />
+              <p className="text-muted-foreground">
+                MCKV Institute of Engineering
+              </p>
             </div>
-            <p className="text-muted-foreground">MCKV Institute of Engineering</p>
           </div>
+          <Image
+            src="/assets/MCKVIE.png"
+            alt="MCKV Logo"
+            width={60}
+            height={60}
+          />
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 mb-8">

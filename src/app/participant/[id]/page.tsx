@@ -146,7 +146,7 @@ export default function ParticipantProfile({
         <div className="container mx-auto px-4">
           <Card className="max-w-4xl mx-auto p-4 shadow-lg my-4">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-              <div className="flex items-center text-center sm:text-left">
+              <div className="flex items-center text-center sm:text-left flex-1">
                 <Image
                   src="/assets/logo.png"
                   alt="GDG On Campus Logo"
@@ -155,22 +155,21 @@ export default function ParticipantProfile({
                   className="mr-2"
                 />
                 <div>
-                  <div className="flex items-center gap-2">
-                    <h2 className="text-lg font-bold">
-                      Google Developer Group On Campus
-                    </h2>
-                    <Image
-                      src="/assets/MCKVIE.png"
-                      alt="MCKV Logo"
-                      width={40}
-                      height={40}
-                    />
-                  </div>
+                  <h2 className="text-lg font-bold">
+                    Google Developer Group On Campus
+                  </h2>
                   <p className="text-muted-foreground text-sm">
                     MCKV Institute of Engineering
                   </p>
                 </div>
               </div>
+              <Image
+                src="/assets/MCKVIE.png"
+                alt="MCKV Logo"
+                width={60}
+                height={60}
+                className="hidden sm:block"
+              />
               <Link href="/" className="w-full sm:w-auto">
                 <Button className="w-full">
                   <ArrowLeft className="mr-2 h-4 w-4" /> Back to Leaderboard
