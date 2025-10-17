@@ -214,8 +214,8 @@ export default function Home() {
               <Image
                 src="/assets/MCKVIE.png"
                 alt="MCKV Logo"
-                width={100}
-                height={100}
+                width={120}
+                height={120}
                 className="hidden sm:block"
               />
             </Link>
