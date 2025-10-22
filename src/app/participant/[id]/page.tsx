@@ -146,34 +146,34 @@ export default function ParticipantProfile({
         <div className="container mx-auto px-4">
           <Card className="max-w-4xl mx-auto p-4 shadow-lg my-4">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <div className="flex flex-col md:flex-row items-center gap-4 text-center md:text-left w-full md:w-auto">
+              <div className="flex items-center gap-2 text-center md:text-left">
                 <Image
                   src="/assets/logo.png"
-                  alt="GDG On Campus Logo"
+                  alt="Google Developer Groups Logo"
                   width={60}
                   height={60}
                 />
                 <div>
-                  <h2 className="text-lg font-bold text-foreground">
-                    Google Developer Group On Campus
-                  </h2>
-                  <p className="text-muted-foreground text-sm">
-                    MCKV Institute of Engineering
-                  </p>
+                  <h2 className="text-lg font-bold text-foreground">Google Developer Groups</h2>
+                  <div className="flex items-center justify-center md:justify-start gap-2 mt-1">
+                    <span className="text-primary font-semibold text-sm">On campus</span>
+                    <span className="text-muted-foreground text-sm">
+                      MCKV Institute of Engineering
+                    </span>
+                  </div>
                 </div>
               </div>
-              <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
+              <div className="flex flex-col items-center gap-4 mt-4 md:mt-0">
                 <Link
                   href="https://www.mckvie.edu.in/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mx-auto"
                 >
                   <Image
                     src="/assets/MCKVIE.png"
                     alt="MCKV Logo"
-                    width={140}
-                    height={140}
+                    width={180}
+                    height={180}
                   />
                 </Link>
                 <Link href="/" className="w-full md:w-auto">
