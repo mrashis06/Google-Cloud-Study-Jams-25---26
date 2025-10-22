@@ -145,25 +145,25 @@ export default function ParticipantProfile({
       <div className="sticky top-0 z-10 bg-background/80 backdrop-blur-sm">
         <div className="container mx-auto px-4">
           <Card className="max-w-4xl mx-auto p-4 shadow-lg my-4">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <div className="flex items-center gap-2 text-center md:text-left">
-                <Image
-                  src="/assets/logo.png"
-                  alt="Google Developer Groups Logo"
-                  width={60}
-                  height={60}
-                />
-                <div>
-                  <h2 className="text-lg font-bold text-foreground">Google Developer Groups</h2>
-                  <div className="flex items-center justify-center md:justify-start gap-2 mt-1">
-                    <span className="text-primary font-semibold text-sm">On campus</span>
-                    <span className="text-muted-foreground text-sm">
-                      MCKV Institute of Engineering
-                    </span>
+            <div className="flex flex-col items-center gap-6">
+              <div className="w-full flex flex-col md:flex-row justify-around items-center gap-6">
+                <div className="flex items-center gap-2 text-center md:text-left">
+                  <Image
+                    src="/assets/logo.png"
+                    alt="Google Developer Groups Logo"
+                    width={60}
+                    height={60}
+                  />
+                  <div>
+                    <h2 className="text-lg font-bold text-foreground">Google Developer Groups</h2>
+                    <div className="flex items-center justify-center md:justify-start gap-2 mt-1">
+                      <span className="text-primary font-semibold text-sm">On campus</span>
+                      <span className="text-muted-foreground text-sm">
+                        MCKV Institute of Engineering
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="flex flex-col items-center gap-4 mt-4 md:mt-0">
                 <Link
                   href="https://www.mckvie.edu.in/"
                   target="_blank"
@@ -176,12 +176,12 @@ export default function ParticipantProfile({
                     height={180}
                   />
                 </Link>
-                <Link href="/" className="w-full md:w-auto">
-                  <Button className="w-full">
-                    <ArrowLeft className="mr-2 h-4 w-4" /> Back to Leaderboard
-                  </Button>
-                </Link>
               </div>
+              <Link href="/" className="w-full max-w-xs md:w-auto">
+                <Button className="w-full">
+                  <ArrowLeft className="mr-2 h-4 w-4" /> Back to Leaderboard
+                </Button>
+              </Link>
             </div>
           </Card>
         </div>
