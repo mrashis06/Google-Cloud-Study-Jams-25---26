@@ -15,9 +15,14 @@ export type Participant = {
   completedArcadeGames: string[];
 };
 
-const SPREADSHEET_URL = 'https://docs.google.com/spreadsheets/d/1tXYWnuhTObWAoFmqeCenPIb5pe7hS5P9Q_NiqxlReR0/gviz/tq?tqx=out:csv&gid=0';
+const SPREADSHEET_URL = process.env.NEXT_PUBLIC_SPREADSHEET_URL;
 
 export async function getParticipants(): Promise<Participant[]> {
+  if (!SPREADSHEET_URL) {
+    console.error("Spreadsheet URL is not defined. Please set NEXT_PUBLIC_SPREADSHEET_URL environment variable.");
+    return [];
+  }
+  
   try {
     const response = await fetch(SPREADSHEET_URL);
     const csvText = await response.text();
