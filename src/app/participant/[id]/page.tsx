@@ -147,7 +147,7 @@ export default function ParticipantProfile({
           <Card className="max-w-4xl mx-auto p-4 shadow-lg my-4">
             <div className="flex flex-col items-center gap-6">
               <div className="w-full flex flex-col md:flex-row justify-between items-center gap-6">
-                <div className="flex items-center gap-2 text-center md:text-left">
+                <div className="flex flex-col items-center md:flex-row md:items-start gap-2 text-center md:text-left">
                   <Image
                     src="/assets/logo.png"
                     alt="Google Developer Groups Logo"
@@ -174,6 +174,7 @@ export default function ParticipantProfile({
                     alt="MCKV Logo"
                     width={180}
                     height={180}
+                    className="h-auto"
                   />
                 </Link>
               </div>
