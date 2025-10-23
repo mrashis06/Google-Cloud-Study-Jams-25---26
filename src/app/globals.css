@@ -76,23 +76,23 @@
 
 @layer utilities {
   .bg-rank-gold {
-    background: linear-gradient(145deg, #fefde8 0%, #fde047 50%, #eab308 100%);
+    background: linear-gradient(145deg, #fff7d0 0%, #fde047 50%, #eab308 100%);
   }
   .bg-rank-silver {
-    background: linear-gradient(145deg, #f8fafc 0%, #d1d5db 50%, #9ca3af 100%);
+    background: linear-gradient(145deg, #f8fafc 0%, #e2e8f0 50%, #9ca3af 100%);
   }
   .bg-rank-bronze {
-    background: linear-gradient(145deg, #fef3e8 0%, #f9c29b 50%, #d97706 100%);
+    background: linear-gradient(145deg, #ffedd5 0%, #f9c29b 50%, #d97706 100%);
   }
 
   .dark .bg-rank-gold {
-    background: linear-gradient(145deg, #423d0c 0%, #a16207 50%, #ca8a04 100%);
+    background: linear-gradient(145deg, #423d0c 0%, #a16207 50%, #facc15 100%);
   }
   .dark .bg-rank-silver {
-    background: linear-gradient(145deg, #334155 0%, #475569 50%, #64748b 100%);
+    background: linear-gradient(145deg, #334155 0%, #475569 50%, #94a3b8 100%);
   }
   .dark .bg-rank-bronze {
-    background: linear-gradient(145deg, #4d2d14 0%, #9a3412 50%, #c2410c 100%);
+    background: linear-gradient(145deg, #4d2d14 0%, #9a3412 50%, #ea580c 100%);
   }
 
   .bg-rank-gold:hover,
